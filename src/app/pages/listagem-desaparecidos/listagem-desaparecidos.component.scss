@@ -1,0 +1,20 @@
+::ng-deep .container-listagem-desaparecidos {
+    height: 100%;
+    overflow-y: auto;
+    width: 100%;
+    background-color: #dddbdb;
+
+    .contaiener-estrutura {
+
+        .container-cards {
+
+            .cards {
+                width: 70%;
+
+                .p-card {
+                    width: 230px;
+                }
+            }
+        }
+    }
+}

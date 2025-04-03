@@ -30,3 +30,13 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+@media(max-width: 576px) {
+    .p-inputtext {
+        height: 40px;
+    }
+
+    .p-dropdown {
+        height: 40px !important;
+    }
+}

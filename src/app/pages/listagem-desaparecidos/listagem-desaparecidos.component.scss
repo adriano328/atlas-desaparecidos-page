@@ -6,9 +6,10 @@
     .contaiener-estrutura {
         .container-filtros {
             .filtro {
-                width: 60%;
+                width: 55%;
             }
         }
+
         .container-cards {
             .cards {
                 width: 55%;
@@ -29,22 +30,19 @@
 @media(max-width: 1200px) {
     ::ng-deep .container-listagem-desaparecidos {
         .contaiener-estrutura {
-            // .container-filtros {
-            //     .filtro {
-            //         width: 90%;
-
-            //         .container-nome {
-            //             width: 50% !important;
-
-            //             .campo-nome {
-            //                 width: 100% !important;
-            //             }
-            //         }
-            //     }
-            // }
+            margin-bottom: 2em !important;
+            .container-filtros {
+                .filtro {
+                    width: 90% !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    padding: 10px;
+                }
+            }
             .container-cards {
                 .cards {
                     width: 90%;
+
                     .p-card {
                         width: 200px !important;
                     }
@@ -57,19 +55,21 @@
 @media(max-width: 992px) {
     ::ng-deep .container-listagem-desaparecidos {
         .contaiener-estrutura {
-            // .container-filtros {
-            //     .filtro {
-            //         width: 90%;
+            .container-filtros {
+                .filtro {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    width: 90%;
+                    padding: 10px;
 
-            //         .container-nome {
-            //             width: 50% !important;
+                    .campo-sexo-idade {
+                        width: 100% !important;
+                        display: flex !important;
+                        justify-content: center;
+                    }
+                }
+            }
 
-            //             .campo-nome {
-            //                 width: 100% !important;
-            //             }
-            //         }
-            //     }
-            // }
             .container-cards {
                 .cards {
                     .p-card {
@@ -85,21 +85,21 @@
 @media(max-width: 768px) {
     ::ng-deep .container-listagem-desaparecidos {
         .contaiener-estrutura {
-            // .container-filtros {
-            //     .filtro {
-            //         width: 90%;
+            .container-filtros {
+                .filtro {
+                   
 
-            //         .container-nome {
-            //             width: 50% !important;
+                    .campo {
+                        margin-bottom: 1em;
+                    }
+                }
+            }
 
-            //             .campo-nome {
-            //                 width: 100% !important;
-            //             }
-            //         }
-            //     }
-            // }
             .container-cards {
                 .cards {
+                    display: flex !important;
+                    justify-content: center !important;
+
                     .p-card {
                         width: 220px !important;
                     }
@@ -112,19 +112,24 @@
 @media(max-width: 576px) {
     ::ng-deep .container-listagem-desaparecidos {
         .contaiener-estrutura {
-            // .container-filtros {
-            //     .filtro {
-            //         width: 90%;
+            .container-filtros {
+                .filtro {
+                    .campo {
+                        margin-bottom: 1em;
+                    }
+                    .campo-sexo-idade {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        .texto {
+                            margin-top: 0.8em !important;
+                        }
+                        .campo-sexo {
+                            margin-bottom: 1em !important;
+                        }
+                    }
+                }
+            }
 
-            //         .container-nome {
-            //             width: 50% !important;
-
-            //             .campo-nome {
-            //                 width: 100% !important;
-            //             }
-            //         }
-            //     }
-            // }
             .container-cards {
                 .cards {
                     display: flex !important;

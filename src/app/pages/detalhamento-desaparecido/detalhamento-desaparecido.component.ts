@@ -114,7 +114,8 @@ export class DetalhamentoDesaparecidoComponent {
     ).subscribe({
       next: (res) => {
         this.messageService.success('Informação adicionada com sucesso!');
-        this.limpaFormularioInformacao()
+        this.limpaFormularioInformacao();
+        this.buscaInformacoesDesaparecido(this.pessoa.ultimaOcorrencia.ocoId)
       },
       error: (err) => {
         this.messageService.error(err?.error?.detail)
@@ -129,6 +130,11 @@ export class DetalhamentoDesaparecidoComponent {
       dataAvistamento: ['']
     })
   }
+
+  verificaData($event: any) {
+    console.log($event);
+    
+  } 
 
   buscaInformacoesDesaparecido(ocorrenciaId: number) {
     this.ocorrenciaService.buscaInformacoesDesaparecidos(ocorrenciaId).subscribe({

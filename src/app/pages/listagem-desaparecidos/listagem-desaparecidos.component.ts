@@ -10,12 +10,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SexoEnum } from '../../shared/enum/sexoEnum';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PessoasService } from '../../shared/service/pessoas.service';
+import { ButtonModule } from 'primeng/button';
+import { HttpClientModule } from '@angular/common/http';
+import { StatusEnum } from '../../shared/enum/statusEnum';
 
 @Component({
   selector: 'app-listagem-desaparecidos',
   standalone: true,
   imports: [CardModule, NgFor, NgIf, PaginatorModule, IconFieldModule, InputTextModule,
-    ReactiveFormsModule, InputIconModule, CommonModule],
+    ReactiveFormsModule, InputIconModule, CommonModule, ButtonModule, HttpClientModule],
+  providers: [PessoasService],
   templateUrl: './listagem-desaparecidos.component.html',
   styleUrl: './listagem-desaparecidos.component.scss'
 })
@@ -25,6 +29,7 @@ export class ListagemDesaparecidosComponent implements OnInit {
   first: number = 0;
   rows: number = 10;
   sexo = SexoEnum;
+  status = StatusEnum;
   form!: FormGroup;
   totalElements!: number;
 
@@ -49,13 +54,20 @@ export class ListagemDesaparecidosComponent implements OnInit {
   }
 
   consultarPessoas(event?: PaginatorState) {
-
     this.pessoasService.carregaPessoas(this.form.value.nome, this.form.value.idadeMinima, this.form.value.idadeMaxima, this.form.value.sexo, this.form.value.status, event?.page ? event?.page : 0, event?.rows ? event?.rows : 10).subscribe({
       next: (res) => {
         this.pessoas = res.content;
         this.totalElements = res.totalElements;
       }
     })
+  }
+
+  limpar() {
+    this.form.patchValue({
+      nome: '', sexo: '', idadeMinima: '',
+      idadeMaxima: '', status: ''
+    });
+    this.consultarPessoas()
   }
 
   trocarImagemPadrao(event: Event) {

@@ -15,6 +15,10 @@
                             <p-dropdown [options]="sexo" optionLabel="nome" formControlName="sexo" optionValue="valor"
                                 placeholder="Buscar pelo sexo" />
                         </div>
+                        <div class="campo-sexo basis-[40%]">
+                            <p-dropdown [options]="status" optionLabel="nome" formControlName="status" optionValue="valor"
+                                placeholder="Buscar por situação" />
+                        </div>
                         <div class="campo-idade flex gap-2 align-center justify-center justify-end basis-[45%]">
                             <input type="number" formControlName="idadeMinima" class="text-center h-[30px] text-[14px]"
                                 pInputText placeholder="Idade Mínima" />
@@ -22,11 +26,17 @@
                             <input type="number" formControlName="idadeMaxima" class="text-center h-[30px] text-[14px]"
                                 pInputText placeholder="Idade Máxima" />
                         </div>
+                        
+                    </div>
+                    <div class="container-botao-limpar flex justify-center items-center">
+                        <div class="flex justify-center cursor-pointer items-center botao-limpar w-24 h-10 bg-blue-500 rounded-md" (click)="limpar()">
+                            <span class="text-[12px] text-white">Limpar</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
-        <div class="flex w-full align-center justify-center container-cards mt-5">
+        <div class="flex w-full align-center justify-center container-cards">
             <div class="flex flex-row flex-wrap justify-between cards gap-2">
                 <p-card class="card cursor-pointer" *ngFor="let pessoa of pessoas">
                     <div class="flex flex-column justify-center container-foto h-[130px]">
@@ -43,7 +53,7 @@
                         </div>
                         <div class="flex justify-center align-center container-status mt-3">
                             <div class="status-desaparecido bg-red-500 p-1 pl-2 pr-3 rounded"
-                                *ngIf="!pessoa.ultimaOcorrencia.dataLocalizacao">
+                                *ngIf="pessoa.ultimaOcorrencia.dataLocalizacao == null">
                                 <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>
                             </div>
                             <div class="status-localizado bg-green-500 p-1 pl-3 pr-3 rounded"
@@ -56,7 +66,7 @@
             </div>
         </div>
 
-        <div class="flex justify-center paginator mt-5">
+        <div class="flex justify-center paginator">
             <p-paginator (onPageChange)="consultarPessoas($event)" [first]="first" [rows]="rows" [totalRecords]="totalElements"
                 [rowsPerPageOptions]="[10, 20, 30]" />
         </div>

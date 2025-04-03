@@ -5,7 +5,7 @@ import { importProvidersFrom } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app/app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 bootstrapApplication(AppComponent, {
@@ -13,10 +13,10 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       RouterModule.forRoot(routes),
       BrowserAnimationsModule,
-      HttpClientModule,
       BrowserModule,
       ReactiveFormsModule
     ),
+    provideHttpClient(),
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: LoadingInterceptor,

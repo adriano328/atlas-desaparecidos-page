@@ -1,18 +1,137 @@
 ::ng-deep .container-listagem-desaparecidos {
     height: 100%;
     overflow-y: auto;
-    width: 100%;
     background-color: #dddbdb;
 
     .contaiener-estrutura {
-
+        .container-filtros {
+            .filtro {
+                width: 60%;
+            }
+        }
         .container-cards {
-
             .cards {
-                width: 70%;
+                width: 55%;
 
                 .p-card {
-                    width: 230px;
+                    width: 200px;
+                    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+                }
+
+                .p-card:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 1200px) {
+    ::ng-deep .container-listagem-desaparecidos {
+        .contaiener-estrutura {
+            // .container-filtros {
+            //     .filtro {
+            //         width: 90%;
+
+            //         .container-nome {
+            //             width: 50% !important;
+
+            //             .campo-nome {
+            //                 width: 100% !important;
+            //             }
+            //         }
+            //     }
+            // }
+            .container-cards {
+                .cards {
+                    width: 90%;
+                    .p-card {
+                        width: 200px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 992px) {
+    ::ng-deep .container-listagem-desaparecidos {
+        .contaiener-estrutura {
+            // .container-filtros {
+            //     .filtro {
+            //         width: 90%;
+
+            //         .container-nome {
+            //             width: 50% !important;
+
+            //             .campo-nome {
+            //                 width: 100% !important;
+            //             }
+            //         }
+            //     }
+            // }
+            .container-cards {
+                .cards {
+                    .p-card {
+                        width: 170px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width: 768px) {
+    ::ng-deep .container-listagem-desaparecidos {
+        .contaiener-estrutura {
+            // .container-filtros {
+            //     .filtro {
+            //         width: 90%;
+
+            //         .container-nome {
+            //             width: 50% !important;
+
+            //             .campo-nome {
+            //                 width: 100% !important;
+            //             }
+            //         }
+            //     }
+            // }
+            .container-cards {
+                .cards {
+                    .p-card {
+                        width: 220px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 576px) {
+    ::ng-deep .container-listagem-desaparecidos {
+        .contaiener-estrutura {
+            // .container-filtros {
+            //     .filtro {
+            //         width: 90%;
+
+            //         .container-nome {
+            //             width: 50% !important;
+
+            //             .campo-nome {
+            //                 width: 100% !important;
+            //             }
+            //         }
+            //     }
+            // }
+            .container-cards {
+                .cards {
+                    display: flex !important;
+                    justify-content: center !important;
+                    .p-card {
+                        width: 280px !important;
+                    }
                 }
             }
         }

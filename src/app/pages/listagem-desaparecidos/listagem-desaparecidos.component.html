@@ -1,24 +1,53 @@
-<div class="flex justify-center flex-col container-listagem-desaparecidos p-2">
-    <div class="flex justify-center w-full flex-col contaiener-estrutura">
-        <div class="flex w-full align-center justify-center container-cards">
+<div class="flex flex-col container-listagem-desaparecidos">
+    <div class="flex justify-center mt-5 flex-col w-full flex-col contaiener-estrutura">
+        <!-- <form [formGroup]="form">
+            <div class="flex justify-center container-filtros">
+                <div class="flex flex-row justify-around filtro w-full">
+                    <div class="container-nome justify-between basis-[35%]">
+                        <p-iconField iconPosition="left">
+                            <p-inputIcon styleClass="pi pi-search" />
+                            <input type="text" class="w-full h-[30px] pl-8 text-[14px]" 
+                                formControlName="nome" pInputText placeholder="Buscar por nome" />
+                        </p-iconField>
+                    </div>
+
+                    <div class="basis-[25%]">
+                        <p-dropdown [options]="sexo" optionLabel="nome" 
+                            formControlName="sexo" optionValue="valor" placeholder="Buscar pelo sexo" />
+                    </div>
+
+                    <div class="flex gap-2 align-center justify-center basis-[30%] justify-end">
+                        <input type="number" formControlName="idadeMinima" 
+                            class="text-center h-[30px] text-[14px]" pInputText placeholder="Idade Mínima" />
+                        <span class="text-[14px] mt-1">Até</span>
+                        <input type="number" formControlName="idadeMaxima" 
+                            class="text-center h-[30px] text-[14px]" pInputText placeholder="Idade Máxima" />
+                    </div>
+                </div>
+            </div>
+        </form> -->
+        <div class="flex w-full align-center justify-center container-cards mt-5">
             <div class="flex flex-row flex-wrap justify-between cards gap-2">
-                <p-card class="card cursor-pointer shadow-lg" *ngFor="let pessoa of pessoasPaginadas">
+                <p-card class="card cursor-pointer" 
+                    *ngFor="let pessoa of pessoasPaginadas; trackBy: trackById">
                     <div class="flex flex-column justify-center container-foto">
                         <img [src]="pessoa.urlFoto" class="foto rounded-lg" width="100" height="100" alt="Foto">
                     </div>
                     <div class="flex flex-col justify-center container-informacoes-pessoais mt-3">
                         <span class="texto text-center text-[13px]">{{pessoa.nome}}</span>
-                        <span class="texto text-center text-[13px]">{{pessoa.idade}} anos,</span>
+                        <span class="texto text-center text-[13px]">{{pessoa.idade}} anos</span>
                         <div class="flex flex-col">
                             <span class="texto text-center text-[13px]">Última localização:</span>
                             <span class="texto text-center text-[13px]">
                                 {{pessoa.ultimaOcorrencia.localDesaparecimentoConcat}}</span>
                         </div>
                         <div class="flex justify-center align-center container-status mt-3">
-                            <div class="status-desaparecido bg-red-500 p-1 pl-2 pr-3 rounded" *ngIf="!pessoa.ultimaOcorrencia.dataLocalizacao">
+                            <div class="status-desaparecido bg-red-500 p-1 pl-2 pr-3 rounded"
+                                *ngIf="!pessoa.ultimaOcorrencia.dataLocalizacao">
                                 <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>
                             </div>
-                            <div class="status-localizado bg-green-500 p-1 pl-3 pr-3 rounded" *ngIf="pessoa.ultimaOcorrencia.dataLocalizacao">
+                            <div class="status-localizado bg-green-500 p-1 pl-3 pr-3 rounded"
+                                *ngIf="pessoa.ultimaOcorrencia.dataLocalizacao">
                                 <span class="texto text-center text-white text-[10px]">LOCALIZADO</span>
                             </div>
                         </div>
@@ -26,13 +55,14 @@
                 </p-card>
             </div>
         </div>
+
         <div class="flex justify-center paginator mt-5">
-            <p-paginator class="shadow-lg"
+            <p-paginator class="shadow-lg mt-3" 
                 [first]="first" 
                 [rows]="rows" 
-                [totalRecords]="pessoas.length"  
+                [totalRecords]="totalElements"
                 (onPageChange)="onPageChange($event)">
             </p-paginator>
         </div>
-    </div> 
+    </div>
 </div>

@@ -12,10 +12,11 @@
 
         .container-cards {
             .cards {
-                width: 55%;
+                width: 70%;
 
                 .p-card {
-                    width: 200px;
+                    width: 230px;
+                    height: 320px;
                     transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
                 }
 

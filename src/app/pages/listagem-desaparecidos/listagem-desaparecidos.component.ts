@@ -9,6 +9,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SexoEnum } from '../../shared/enum/sexoEnum';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { PessoasService } from '../../shared/service/pessoas.service';
 
 @Component({
   selector: 'app-listagem-desaparecidos',
@@ -20,10 +21,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class ListagemDesaparecidosComponent implements OnInit {
 
-  pessoas: Pessoa[] = pessoas;
-  pessoasPaginadas: Pessoa[] = [];
-  pessoasFiltradas: Pessoa[] = [];
-  first: number = 1;
+  pessoas: Pessoa[] = [];
+  first: number = 0;
   rows: number = 10;
   sexo = SexoEnum;
   form!: FormGroup;
@@ -31,58 +30,36 @@ export class ListagemDesaparecidosComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.valueChanges.subscribe(() => {
-      this.BuscaPorFiltros();
+      this.consultarPessoas();
     });
-
-    this.BuscaPorFiltros();
+    this.consultarPessoas()
   }
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private pessoasService: PessoasService
   ) {
     this.form = this.formBuilder.group({
       nome: [''],
       sexo: [''],
       idadeMinima: [''],
-      idadeMaxima: ['']
+      idadeMaxima: [''],
+      status: ['']
     })
   }
 
-  onPageChange(event: PaginatorState) {
-    this.first = event.first ?? 1;
-    this.rows = event.rows ?? 10;
-    this.atualizarPagina();
+  consultarPessoas(event?: PaginatorState) {
+
+    this.pessoasService.carregaPessoas(this.form.value.nome, this.form.value.idadeMinima, this.form.value.idadeMaxima, this.form.value.sexo, this.form.value.status, event?.page ? event?.page : 0, event?.rows ? event?.rows : 10).subscribe({
+      next: (res) => {
+        this.pessoas = res.content;
+        this.totalElements = res.totalElements;
+      }
+    })
   }
 
-  trackById(index: number, item: Pessoa) {
-    return item.id; 
-  }
-
-  BuscaPorFiltros() {
-    this.totalElements = this.pessoas.length;
-
-    const { nome, sexo, idadeMinima, idadeMaxima } = this.form.value;
-
-    this.pessoasFiltradas = this.pessoas.filter(pessoa => {
-      const nomeMatch = nome ? pessoa.nome.toLowerCase().includes(nome.toLowerCase()) : true;
-      const sexoMatch = sexo ? pessoa.sexo === sexo : true;
-      const idadeMatch =
-        (!idadeMinima || pessoa.idade >= idadeMinima) &&
-        (!idadeMaxima || pessoa.idade <= idadeMaxima);
-
-      return nomeMatch && sexoMatch && idadeMatch;
-    });
-    this.totalElements = this.pessoasFiltradas.length;
-    this.atualizarPagina();
-  }
-
-  atualizarPagina() {
-    const start = this.first;
-    const end = this.first + this.rows;
-
-    this.pessoasPaginadas = this.pessoasFiltradas.slice(start, end);
-    this.totalElements = this.pessoasPaginadas.length;
-
+  trocarImagemPadrao(event: Event) {
+    (event.target as HTMLImageElement).src = 'assets/img/personNotPhoto.png';
   }
 
 }

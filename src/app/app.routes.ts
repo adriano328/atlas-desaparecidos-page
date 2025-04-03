@@ -11,5 +11,8 @@ export const routes: Routes = [
     },
     {
         path: 'detalhamento-desaparecido', component: DetalhamentoDesaparecidoComponent
+    },
+    {
+        path: 'detalhamento-desaparecido/:id', component: DetalhamentoDesaparecidoComponent
     }
 ];

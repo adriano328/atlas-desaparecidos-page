@@ -1,1 +1,105 @@
-<p>detalhamento-desaparecido works!</p>
+<div class="flex flex-col justify-center items-center container-detalhamento-desaparecido">
+    <div class="container-form">
+        <div class="borda-container p-4 w-[1100px] h-[700px] border border-[#f0f8ffcc] bg-[#f0f8ffcc] rounded-lg">
+            <div class="flex flex-row container-informacao-desaparecido rounded shadow-md border bg-white h-full">
+                <div class="w-1/4 flex flex-col items-center borda-container p-4">
+                    <div class="container-foto border border-[#cecece] rounded mt-4"
+                        *ngIf="pessoa?.urlFoto || pessoa?.urlFoto == null">
+                        <img [src]="pessoa?.urlFoto" class="w-[140px] h-[150px] object-cover rounded-md" alt="Foto"
+                            onerror="this.src='assets/img/personNotPhoto.png'">
+                    </div>
+                    <div class="container-status mt-4">
+                        <div class="status-desaparecido bg-red-500 p-1 pl-2 pr-3 rounded"
+                            *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao == null">
+                            <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>
+                        </div>
+                        <div class="status-localizado bg-green-500 p-1 pl-3 pr-3 rounded"
+                            *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">
+                            <span class="texto text-center text-white text-[10px]">LOCALIZADO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-3/4 border p-2">
+                    <form [formGroup]="form">
+                        <p-panel header="Informações Pessoais">
+                            <div class="grid grid-cols-12 gap-4">
+                                <div class="w-[100%] sm:col-span-2 lg:col-span-10">
+                                    <label class="block text-gray-700 uppercase text-[9px]">Nome Completo:</label>
+                                    <input type="text" formControlName="nome"
+                                        class="w-full border border-[#cecece] h-[30px] rounded-md text-[11px] p-2">
+                                </div>
+                                <div class="w-[100%] sm:col-span-2 lg:col-span-2">
+                                    <label class="block text-gray-700 uppercase text-[9px]">Idade:</label>
+                                    <input type="tel" formControlName="idade"
+                                        class="w-full border border-[#cecece] text-center h-[30px] rounded-md text-[11px] p-2">
+                                </div>
+                                <div class="w-[100%] sm:col-span-2 lg:col-span-3">
+                                    <label class="block text-gray-700 uppercase text-[9px]">Sexo:</label>
+                                    <p-dropdown [options]="sexo" optionLabel="nome" formControlName="sexo"
+                                        optionValue="valor" placeholder="Selecione" />
+                                </div>
+                                <div class="w-[100%] sm:col-span-2 lg:col-span-3">
+                                    <label class="block text-gray-700 uppercase text-[9px]">Situação Vital:</label>
+                                    <p-dropdown [options]="situacaoVital" optionLabel="nome" formControlName="situacaoVital"
+                                        optionValue="valor" placeholder="Selecione" />
+                                </div>
+    
+                            </div>
+                        </p-panel>
+                        <div class="container-ocorrencia mt-3">
+                            <p-panel header="Dados da Ocorrência">
+                                <div class="grid grid-cols-12 gap-4">
+                                    <div class="w-[100%] sm:col-span-2 lg:col-span-2">
+                                        <label class="block text-gray-700 uppercase text-[9px]">Cód:</label>
+                                        <input type="text" formControlName="cod"
+                                            class="w-full border border-[#cecece] h-[30px] rounded-md text-center text-[11px] uppercase"
+                                            readonly>
+                                    </div>
+                                    <div class="w-[100%] sm:col-span-2 lg:col-span-3">
+                                        <label class="block text-gray-700 uppercase text-[9px]">Data
+                                            Desaparecimento:</label>
+                                        <input type="date" formControlName="dataDesaparecimento"
+                                            class="w-full border border-[#cecece] h-[30px] rounded-md text-center text-[11px] uppercase">
+                                    </div>
+                                    <div class="w-[100%] sm:col-span-2 lg:col-span-7">
+                                        <label class="block text-gray-700 uppercase text-[9px]">Local
+                                            Desaparecimento:</label>
+                                        <input type="text" formControlName="localDesaparecimento"
+                                            class="w-full border border-[#cecece] h-[30px] rounded-md text-[11px] uppercase p-1">
+                                    </div>
+                                    <div class="w-[100%] sm:col-span-2 lg:col-span-12">
+                                        <label class="block text-gray-700 uppercase text-[9px]">Vestimentas do
+                                            Desaparecido:</label>
+                                        <input type="text" formControlName="vestimenta"
+                                            class="w-full border border-[#cecece] h-[30px] rounded-md text-[9px] uppercase p-1">
+                                    </div>
+                                    <div class="w-[100%] sm:col-span-2 lg:col-span-11">
+                                        <label class="block text-gray-700 uppercase text-[9px]">Informações
+                                            Adicionais:</label>
+                                        <textarea pInputTextarea rows="5" cols="30" type="text" formControlName="informacao"
+                                            class="w-full border border-[#cecece] rounded-md text-[9px] uppercase p-1"></textarea>
+                                    </div>
+                                    <div class="flex justify-center items-center sm:col-span-2 lg:col-span-1">
+                                        <i class="material-icons inative cursor-pointer" pTooltip="Cartaz de desaparecido" (click)="abrirCartaz(urlCartaz)">file_open</i>
+                                    </div>
+                                    <div class="w-[100%] sm:col-span-2 lg:col-span-3"
+                                        *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">
+                                        <label class="block text-gray-700 uppercase text-[9px]">Data
+                                            Localização:</label>
+                                        <input type="date" formControlName="dataLocalizacao"
+                                            class="w-full border border-[#cecece] h-[30px] rounded-md text-center text-[11px] uppercase">
+                                    </div>
+                                </div>
+                            </p-panel>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between container-botoes mt-4">
+            <div class="flex botao-voltar justify-center items-center cursor-pointer bg-[#424e5c] p-1 w-[80px] h-[30px] rounded-md" (click)="voltar()">
+                <span class="text-center text-white text-[12px]">Voltar</span>
+            </div>
+        </div>
+    </div>
+</div>

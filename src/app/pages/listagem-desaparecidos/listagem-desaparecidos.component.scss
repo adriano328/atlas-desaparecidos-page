@@ -28,6 +28,7 @@
 
         .container-cards {
             margin-top: 2em;
+
             .cards {
                 width: 70%;
 
@@ -49,10 +50,6 @@
             .p-paginator {
                 font-size: 12px;
             }
-
-            .p-dropdown {
-                font-size: 12px;
-            }
         }
     }
 }
@@ -61,6 +58,7 @@
     ::ng-deep .container-listagem-desaparecidos {
         .contaiener-estrutura {
             margin-bottom: 2em !important;
+
             .container-filtros {
                 .filtro {
                     width: 90% !important;
@@ -69,6 +67,7 @@
                     padding: 10px;
                 }
             }
+
             .container-cards {
                 .cards {
                     width: 90%;
@@ -117,7 +116,7 @@
         .contaiener-estrutura {
             .container-filtros {
                 .filtro {
-                   
+
 
                     .campo {
                         margin-bottom: 1em;
@@ -147,12 +146,15 @@
                     .campo {
                         margin-bottom: 1em;
                     }
+
                     .campo-sexo-idade {
                         display: flex !important;
                         flex-direction: column !important;
+
                         .texto {
                             margin-top: 0.8em !important;
                         }
+
                         .campo-sexo {
                             margin-bottom: 1em !important;
                         }
@@ -164,6 +166,7 @@
                 .cards {
                     display: flex !important;
                     justify-content: center !important;
+
                     .p-card {
                         width: 280px !important;
                     }

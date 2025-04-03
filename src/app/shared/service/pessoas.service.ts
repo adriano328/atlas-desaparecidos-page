@@ -21,4 +21,8 @@ export class PessoasService {
     })
   }
 
+  carregaPessoa(id: number) {
+    return this.http.get<Pessoa>(`${environment.url}/pessoas/${id}`)
+  }
+
 }

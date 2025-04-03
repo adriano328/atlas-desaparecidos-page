@@ -19,7 +19,7 @@
                             <p-dropdown [options]="status" optionLabel="nome" formControlName="status" optionValue="valor"
                                 placeholder="Buscar por situação" />
                         </div>
-                        <div class="campo-idade flex gap-2 align-center justify-center justify-end basis-[45%]">
+                        <div class="campo-idade flex gap-2 items-center justify-center justify-end basis-[45%]">
                             <input type="number" formControlName="idadeMinima" class="text-center h-[30px] text-[14px]"
                                 pInputText placeholder="Idade Mínima" />
                             <span class="text-[14px] mt-1 texto">Até</span>
@@ -36,9 +36,9 @@
                 </div>
             </div>
         </form>
-        <div class="flex w-full align-center justify-center container-cards">
-            <div class="flex flex-row flex-wrap justify-between cards gap-2">
-                <p-card class="card cursor-pointer" *ngFor="let pessoa of pessoas">
+        <div class="flex w-full items-center justify-center container-cards">
+            <div class="flex flex-row flex-wrap justify-between cards gap-2" *ngIf="pessoas.length > 0">
+                <p-card class="card cursor-pointer" *ngFor="let pessoa of pessoas" (click)="redireciona(pessoa.id)">
                     <div class="flex flex-column justify-center container-foto h-[130px]">
                         <img [src]="pessoa.urlFoto" class="foto rounded-lg" width="130" height="100" alt="Foto"
                             onerror="this.src='assets/img/personNotPhoto.png'">
@@ -51,7 +51,7 @@
                             <span class="texto text-center text-[9px] uppercase">
                                 {{pessoa.ultimaOcorrencia.localDesaparecimentoConcat}}</span>
                         </div>
-                        <div class="flex justify-center align-center container-status mt-3">
+                        <div class="flex justify-center items-center container-status mt-3">
                             <div class="status-desaparecido bg-red-500 p-1 pl-2 pr-3 rounded"
                                 *ngIf="pessoa.ultimaOcorrencia.dataLocalizacao == null">
                                 <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>
@@ -65,8 +65,7 @@
                 </p-card>
             </div>
         </div>
-
-        <div class="flex justify-center paginator">
+        <div class="flex justify-center paginator" *ngIf="pessoas.length > 0">
             <p-paginator (onPageChange)="consultarPessoas($event)" [first]="first" [rows]="rows" [totalRecords]="totalElements"
                 [rowsPerPageOptions]="[10, 20, 30]" />
         </div>

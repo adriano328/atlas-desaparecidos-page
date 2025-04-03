@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { pessoas } from '../../shared/base/pessoas';
 import { Pessoa } from '../../shared/interface/pessoa.interface';
 import { CardModule } from 'primeng/card';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
@@ -13,12 +12,17 @@ import { PessoasService } from '../../shared/service/pessoas.service';
 import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 import { StatusEnum } from '../../shared/enum/statusEnum';
+import { Router } from '@angular/router';
+import { NavegacaoUtils } from '../../shared/util/redireciona';
+import { MessageService } from '../../shared/service/message.service';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 @Component({
   selector: 'app-listagem-desaparecidos',
   standalone: true,
   imports: [CardModule, NgFor, NgIf, PaginatorModule, IconFieldModule, InputTextModule,
-    ReactiveFormsModule, InputIconModule, CommonModule, ButtonModule, HttpClientModule],
+    ReactiveFormsModule, InputIconModule, CommonModule, ButtonModule, HttpClientModule, DropdownModule],
   providers: [PessoasService],
   templateUrl: './listagem-desaparecidos.component.html',
   styleUrl: './listagem-desaparecidos.component.scss'
@@ -42,7 +46,9 @@ export class ListagemDesaparecidosComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private pessoasService: PessoasService
+    private pessoasService: PessoasService,
+    private messageService: MessageService,
+    private router: Router
   ) {
     this.form = this.formBuilder.group({
       nome: [''],
@@ -58,6 +64,9 @@ export class ListagemDesaparecidosComponent implements OnInit {
       next: (res) => {
         this.pessoas = res.content;
         this.totalElements = res.totalElements;
+      },
+      error: (e) => {        
+        this.messageService.error(e?.error?.detail)
       }
     })
   }
@@ -70,8 +79,8 @@ export class ListagemDesaparecidosComponent implements OnInit {
     this.consultarPessoas()
   }
 
-  trocarImagemPadrao(event: Event) {
-    (event.target as HTMLImageElement).src = 'assets/img/personNotPhoto.png';
+  redireciona(individuo: number) {
+    NavegacaoUtils.redireciona(this.router, 'detalhamento-desaparecido', individuo);
   }
 
 }

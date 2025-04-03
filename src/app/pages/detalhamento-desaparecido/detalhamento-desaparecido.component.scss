@@ -1,0 +1,25 @@
+::ng-deep .container-detalhamento-desaparecido {
+    height: 100%;
+    overflow-y: auto;
+    background-color: #dddbdb;
+
+    .borda-container {
+        .container-informacao-desaparecido {
+            .p-panel .p-panel-header {
+                background-color: #424e5c;
+                padding: 0.5em;
+                border: 1px solid #424e5c;
+            }
+
+            .p-panel .p-panel-header .p-panel-title {
+                font-weight: 400;
+                color: white;
+                font-size: 13px;
+            }
+
+            .p-panel .p-panel-content {
+                border: 1px solid #cecece;
+            }
+        }
+    }
+}

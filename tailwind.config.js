@@ -4,8 +4,15 @@ module.exports = {
     "./src/**/*.{html,ts}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: '576px',
+      }
+    },
   },
   plugins: [],
+  safelist: [
+    'col-span-10', 'sm:col-span-10', 'md:col-span-12', 'lg:col-span-10'
+  ],
 }
 

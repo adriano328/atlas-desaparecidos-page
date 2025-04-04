@@ -1,38 +1,44 @@
 ::ng-deep .container-detalhamento-desaparecido {
-    height: 100%;
-    overflow-y: auto;
-    background-color: #dddbdb;
 
-    .borda-container {
-        .container-informacao-desaparecido {
-            .p-panel .p-panel-header {
-                background-color: #424e5c;
-                padding: 0.5em;
-                border: 1px solid #424e5c;
-            }
+        .p-paginator {
+            padding: 0em;
+            font-size: 12px;
+        }
 
-            .p-accordion-header-text,
-            .p-panel .p-panel-header .p-panel-title {
-                font-weight: 400;
-                color: white;
-                font-size: 13px;
-            }
+        .p-accordion-header-text,
+        .p-tabview .p-tabview-nav li .p-tabview-nav-link,
+        .p-panel .p-panel-header .p-panel-title {
+            color: white;
+            font-size: 13px;
+            font-weight: 400;
 
-            .p-accordion .p-accordion-content,
-            .p-panel .p-panel-content {
-                border: 1px solid #cecece;
-            }
+        }
 
-            .p-accordion .p-accordion-header .p-accordion-header-link,
-            .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
-                background-color: #424e5c;
-                padding: 0.5em;
-                border: 1px solid #424e5c;
-            }
+        .p-accordion .p-accordion-content,
+        .p-tabview .p-tabview-panels,
+        .p-panel .p-panel-content {
+            border: 1px solid #A9A9A9;
+        }
 
-            .p-icon {
-                color: white;
-            }
+        .p-tabview-nav {
+            background-color: transparent;
+        }
+
+        .p-tabview .p-tabview-nav li .p-tabview-nav-link,
+        .p-panel .p-panel-header,
+        .p-accordion .p-accordion-header .p-accordion-header-link,
+        .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+            padding: 0.5em;
+            background-color: #424e5c;
+            border: 1px solid #424e5c;
+        }
+
+        .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+            border: 1px solid #A9A9A9;
+            padding: 0.5em;
+        }
+
+        .p-icon {
+            color: white;
         }
     }
-}

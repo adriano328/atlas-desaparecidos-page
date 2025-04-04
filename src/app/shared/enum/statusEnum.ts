@@ -1,4 +1,4 @@
 export const StatusEnum = [
-    { nome: 'Desaparecido', valor: 'DESAPARECIDO' },
-    { nome: 'Localizado', valor: 'LOCALIZADO' }
+    { nome: 'DESAPARECIDO', valor: 'DESAPARECIDO' },
+    { nome: 'LOCALIZADO', valor: 'LOCALIZADO' }
 ]

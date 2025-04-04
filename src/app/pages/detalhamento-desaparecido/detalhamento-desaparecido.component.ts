@@ -20,13 +20,15 @@ import { NovaInformacao } from '../../shared/interface/nova-informacao.interface
 import { OcorrenciasService } from '../../shared/service/ocorrencias.service';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
+import { TabViewModule } from 'primeng/tabview';
 
 import { ZipdownloadService } from '../../shared/service/zipdownload.service';
+import { DataMaiorQueHoje } from '../../shared/util/validaData';
 @Component({
   selector: 'app-detalhamento-desaparecido',
   standalone: true,
   imports: [HttpClientModule, NgIf, ReactiveFormsModule, DropdownModule, PanelModule,
-    InputTextareaModule, TooltipModule, AccordionModule, TableModule, PaginatorModule],
+    InputTextareaModule, TooltipModule, AccordionModule, TableModule, PaginatorModule, TabViewModule],
   providers: [PessoasService, OcorrenciasService],
   templateUrl: './detalhamento-desaparecido.component.html',
   styleUrl: './detalhamento-desaparecido.component.scss'
@@ -132,17 +134,24 @@ export class DetalhamentoDesaparecidoComponent {
   }
 
   verificaData($event: any) {
-    console.log($event);
-    
+    if(DataMaiorQueHoje($event.target.value)) {
+      this.messageService.warn('Data não pode ser maior que a data atual!');
+      this.form.controls['dataAvistamento'].setValue('')
+    }
   } 
 
   buscaInformacoesDesaparecido(ocorrenciaId: number) {
     this.ocorrenciaService.buscaInformacoesDesaparecidos(ocorrenciaId).subscribe({
       next: (dado) => {
-        dado.sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
-        this.ultimasInformacoes = dado;        
+        if (Array.isArray(dado)) {
+          dado.sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
+        }
+        this.ultimasInformacoes = dado;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar informações:', err);
       }
-    })
+    });
   }
 
   downloadAnexos(anexos: any, id: number, data: string) {

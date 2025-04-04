@@ -1,4 +1,4 @@
 export const SituacaoVitalEnum = [
-    { nome: 'Vivo', valor: true },
-    { nome: 'Morto', valor: false }
+    { nome: 'VIVO', valor: true },
+    { nome: 'MORTO', valor: false }
 ]

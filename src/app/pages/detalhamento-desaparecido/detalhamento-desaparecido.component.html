@@ -1,182 +1,171 @@
-<div class="flex flex-col justify-center items-center container-detalhamento-desaparecido">
-    <div class="container-form h-[100%]">
-        <div class="borda-container p-4 mt-4 w-[1100px] border border-[#f0f8ffcc] bg-[#f0f8ffcc] rounded-lg">
-            <div class="flex flex-col container-informacao-desaparecido rounded shadow-md border bg-white h-full">
-                <div class="flex flex-row">
-                    <div class="w-1/4 flex flex-col items-center borda-container p-4">
-                        <div class="container-foto border border-[#cecece] rounded mt-4"
-                            *ngIf="pessoa?.urlFoto || pessoa?.urlFoto == null">
-                            <img [src]="pessoa?.urlFoto" class="w-[140px] h-[150px] object-cover rounded-md" alt="Foto"
-                                onerror="this.src='assets/img/personNotPhoto.png'">
-                        </div>
-                        <div class="container-status mt-4">
-                            <div class="status-desaparecido bg-red-500 p-1 pl-2 pr-3 rounded"
-                                *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao == null">
-                                <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>
-                            </div>
-                            <div class="status-localizado bg-green-500 p-1 pl-3 pr-3 rounded"
-                                *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">
-                                <span class="texto text-center text-white text-[10px]">LOCALIZADO</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-3/4 border p-2">
-                        <form [formGroup]="form">
-                            <p-panel header="Informações Pessoais">
-                                <div class="grid grid-cols-12 gap-2">
-                                    <div class="w-[100%] sm:col-span-2 lg:col-span-10">
-                                        <label class="block text-gray-700 uppercase text-[9px]">Nome Completo:</label>
-                                        <input type="text" formControlName="nome"
-                                            class="w-full border border-[#cecece] h-[30px] rounded-md text-[11px] p-2">
-                                    </div>
-                                    <div class="w-[100%] sm:col-span-2 lg:col-span-2">
-                                        <label class="block text-gray-700 uppercase text-[9px]">Idade:</label>
-                                        <input type="tel" formControlName="idade"
-                                            class="w-full border border-[#cecece] text-center h-[30px] rounded-md text-[11px] p-2">
-                                    </div>
-                                    <div class="w-[100%] sm:col-span-2 lg:col-span-3">
-                                        <label class="block text-gray-700 uppercase text-[9px]">Sexo:</label>
-                                        <p-dropdown [options]="sexo" optionLabel="nome" formControlName="sexo"
-                                            optionValue="valor" placeholder="Selecione" />
-                                    </div>
-                                    <div class="w-[100%] sm:col-span-2 lg:col-span-3">
-                                        <label class="block text-gray-700 uppercase text-[9px]">Situação Vital:</label>
-                                        <p-dropdown [options]="situacaoVital" optionLabel="nome"
-                                            formControlName="situacaoVital" optionValue="valor" placeholder="Selecione" />
-                                    </div>
-    
-                                </div>
-                            </p-panel>
-                            <div class="container-ocorrencia mt-3">
-                                <p-panel header="Dados da Ocorrência">
-                                    <div class="grid grid-cols-12 gap-2">
-                                        <div class="w-[100%] sm:col-span-2 lg:col-span-2">
-                                            <label class="block text-gray-700 uppercase text-[9px]">Cód:</label>
-                                            <input type="text" formControlName="cod"
-                                                class="w-full border border-[#cecece] h-[30px] rounded-md text-center text-[11px] uppercase"
-                                                readonly>
-                                        </div>
-                                        <div class="w-[100%] sm:col-span-2 lg:col-span-3">
-                                            <label class="block text-gray-700 uppercase text-[9px]">Data
-                                                Desaparecimento:</label>
-                                            <input type="date" formControlName="dataDesaparecimento"
-                                                class="w-full border border-[#cecece] h-[30px] rounded-md text-center text-[11px] uppercase">
-                                        </div>
-                                        <div class="w-[100%] sm:col-span-2 lg:col-span-7">
-                                            <label class="block text-gray-700 uppercase text-[9px]">Local
-                                                Desaparecimento:</label>
-                                            <input type="text" formControlName="localDesaparecimento"
-                                                class="w-full border border-[#cecece] h-[30px] rounded-md text-[11px] uppercase p-1">
-                                        </div>
-                                        <div class="w-[100%] sm:col-span-2 lg:col-span-12">
-                                            <label class="block text-gray-700 uppercase text-[9px]">Vestimentas do
-                                                Desaparecido:</label>
-                                            <input type="text" formControlName="vestimenta"
-                                                class="w-full border border-[#cecece] h-[30px] rounded-md text-[9px] uppercase p-1">
-                                        </div>
-                                        <div class="w-[100%] sm:col-span-2 lg:col-span-11">
-                                            <label class="block text-gray-700 uppercase text-[9px]">Informações
-                                                Adicionais:</label>
-                                            <textarea pInputTextarea rows="5" cols="30" type="text"
-                                                formControlName="informacao"
-                                                class="w-full border border-[#cecece] rounded-md text-[9px] uppercase p-1"></textarea>
-                                        </div>
-                                        <div class="flex justify-center items-center sm:col-span-2 lg:col-span-1">
-                                            <i class="material-icons inative cursor-pointer"
-                                                pTooltip="Cartaz de desaparecido"
-                                                (click)="abrirCartaz(urlCartaz)">file_open</i>
-                                        </div>
-                                        <div class="w-[100%] sm:col-span-2 lg:col-span-3"
-                                            *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">
-                                            <label class="block text-gray-700 uppercase text-[9px]">Data
-                                                Localização:</label>
-                                            <input type="date" formControlName="dataLocalizacao"
-                                                class="w-full border border-[#cecece] h-[30px] rounded-md text-center text-[11px] uppercase">
-                                        </div>
-                                    </div>
-                                </p-panel>
-                            </div>
-                            <div class="container-ultimos-registros mt-3">
-                                <p-accordion [activeIndex]="-1">
-                                    <p-accordionTab header="Adicionar novas informações">
-                                        <div class="grid grid-cols-12 gap-2">
-                                            <div class="w-[100%] sm:col-span-2 lg:col-span-12">
-                                                <label class="block text-gray-700 uppercase text-[9px]">Novas informações
-                                                    Adicionais:</label>
-                                                <textarea pInputTextarea rows="5" cols="30" type="text"
-                                                    formControlName="novaInformacao"
-                                                    class="w-full border border-[#cecece] rounded-md text-[9px] uppercase p-1"></textarea>
-                                            </div>
-                                            <div class="w-[100%] sm:col-span-2 lg:col-span-3">
-                                                <label class="block text-gray-700 uppercase text-[9px]">Data
-                                                    de avistamento:</label>
-                                                <input type="date" formControlName="dataAvistamento" (blur)="verificaData($event)"
-                                                    class="w-full border border-[#cecece] h-[30px] rounded-md text-center text-[11px] uppercase">
-                                            </div>
-                                            <div class="sm:col-span-2 lg:col-span-4">
-                                                <label class="block text-gray-700 uppercase text-[9px]">Descrição
-                                                    Anexo:</label>
-                                                <input type="text" formControlName="descricao"
-                                                    class="w-full pl-2 border border-[#cecece] h-[30px] rounded-md text-[11px] uppercase">
-                                            </div>
-                                            <div class="sm:col-span-2 lg:col-span-5">
-                                                <label class="block text-gray-700 uppercase text-[9px]">Anexos:</label>
-                                                <input type="file" class="text-center text-[11px] uppercase">
-                                            </div>
-                                            <div class="flex justify-end items-end m:col-span-2 lg:col-span-12">
-                                                <div class="flex botao-voltar justify-center items-center cursor-pointer bg-[#424e5c] p-1 w-[90px] h-[30px] rounded"
-                                                    (click)="adicionaNovaInformacao()">
-                                                    <span class="text-center text-white text-[12px]">Salvar</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </p-accordionTab>
-                                </p-accordion>
-                                <div class="container-ultimos-registros mt-3" *ngIf="ultimasInformacoes.length > 0">
-                                    <p-panel header="Ultimas informações">
-                                        <p-table [value]="ultimasInformacoes" class="w-full">
-                                            <ng-template pTemplate="header">
-                                                <tr>
-                                                    <th class="text-center uppercase">Cód.</th>
-                                                    <th class="text-center uppercase">Data</th>
-                                                    <th class="text-center uppercase col-informacao">Informação</th>
-                                                    <th class="text-center uppercase">Anexos</th>
-                                                </tr>
-                                            </ng-template>
-                                            <ng-template pTemplate="body" let-info>
-                                                <tr>
-                                                    <td class="text-center text-[10px]">{{ info.id }}</td>
-                                                    <td class="text-center text-[10px]">{{ converterData(info.data)}}</td>
-                                                    <td class="text-[10px] uppercase" style="padding-left: 0.5em;">{{
-                                                        info.informacao }}</td>
-                                                    <td>
-                                                        <div class="flex w-full justify-center items-center">
-                                                            <i class="material-icons text-[24px] inative cursor-pointer"
-                                                                pTooltip="Baixar anexos"
-                                                                (click)="downloadAnexos(info.anexos, info.id, converterData(info.data))"
-                                                                *ngIf="info.anexos.length > 0">download</i>
-                                                            <i class="material-icons text-red text-[20px] inative text-center cursor-pointer"
-                                                                pTooltip="Não possui anexos"
-                                                                (click)="downloadAnexos(info.anexos, info.id, converterData(info.data))"
-                                                                *ngIf="info.anexos.length == 0">folder_off</i>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </ng-template>
-                                        </p-table>
-                                    </p-panel>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+<div class="flex justify-center items-center container-detalhamento-desaparecido">
+    <form [formGroup]="form" class="dados w-[1100px] border border-[#A9A9A9] m-2 p-2 rounded-md">
+        <div class="flex justify-center items-center h-[30px] container-titulo rounded-md bg-[#424e5c] mb-3 w-full">
+            <span class="uppercase text-[11px] text-white">Informações do Desaparecido</span>
+        </div>
+        <div class="grid grid-cols-12 items-center">
+            <div class="flex flex-col col-span-12 sm:col-span-10 md:col-span-3 lg:col-span-2 justify-center items-center borda-container">
+                <div class="container-foto border border-[#A9A9A9] rounded-md mt-5"
+                    *ngIf="pessoa?.urlFoto || pessoa?.urlFoto == null">
+                    <img [src]="pessoa?.urlFoto" class="w-[140px] h-[150px] object-cover rounded-md" alt="Foto"
+                        onerror="this.src='assets/img/personNotPhoto.png'">
                 </div>
-                <div class="flex justify-between p-3">
-                    <div class="flex botao-voltar justify-center items-center cursor-pointer bg-[#424e5c] p-1 w-[90px] h-[30px] rounded"
-                        (click)="voltar()">
-                        <span class="text-center text-white text-[13px]">Voltar</span>
+                <div class="container-status mt-4">
+                    <div class="status-desaparecido bg-red-500 p-1 pl-2 pr-3 rounded-md"
+                        *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao == null">
+                        <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>
+                    </div>
+                    <div class="status-localizado bg-green-500 p-1 pl-3 pr-3 rounded-md"
+                        *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">57
+                        <span class="texto text-center text-white text-[10px]">LOCALIZADO</span>
                     </div>
                 </div>
             </div>
+            <p-panel header="Informações Pessoais" class="col-span-12 sm:col-span-10 md:col-span-9 lg:col-span-10 items-center xs:mt-4">
+                <div class="grid grid-cols-12 gap-2">
+                    <div class="col-span-12 sm:col-span-10 md:col-span-12 lg:col-span-11">
+                        <label class="block text-gray-700 uppercase text-[9px]">Nome Completo:</label>
+                        <input type="text" formControlName="nome"
+                            class="w-full border border-[#A9A9A9] h-[30px] rounded-md text-[11px] p-2">
+                    </div>
+                    <div class="col-span-2 sm:col-span-2  md:col-span-2 lg:col-span-1">
+                        <label class="block text-gray-700 uppercase text-[9px]">Idade:</label>
+                        <input type="tel" formControlName="idade"
+                            class="w-full border border-[#A9A9A9] text-center h-[30px] rounded-md text-[11px] p-2">
+                    </div>
+                    <div class="col-span-5 sm:col-span-5 md:col-span-4 lg:col-span-3">
+                        <label class="block text-gray-700 uppercase text-[9px]">Sexo:</label>
+                        <p-dropdown [options]="sexo" optionLabel="nome" formControlName="sexo" optionValue="valor"
+                            placeholder="Selecione" />
+                    </div>
+                    <div class="col-span-5 sm:col-span-5 md:col-span-4 lg:col-span-3">
+                        <label class="block text-gray-700 uppercase text-[9px]">Situação Vital:</label>
+                        <p-dropdown [options]="situacaoVital" optionLabel="nome" formControlName="situacaoVital"
+                            optionValue="valor" placeholder="Selecione" />
+                    </div>
+                </div>
+            </p-panel>
         </div>
-    </div>
+        <div class="container-ocorrencia mt-3">
+            <p-panel header="Dados da Ocorrência">
+                <div class="grid grid-cols-12 gap-2">
+                    <div class="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-2">
+                        <label class="block text-gray-700 uppercase text-[9px]">Cód:</label>
+                        <input type="text" formControlName="cod"
+                            class="w-full border border-[#A9A9A9] h-[30px] rounded-md text-center text-[11px] uppercase"
+                            readonly>
+                    </div>
+                    <div class="col-span-5 sm:col-span-4 md:col-span-4 lg:col-span-3">
+                        <label class="block text-gray-700 uppercase text-[9px]">Data
+                            Desaparecimento:</label>
+                        <input type="date" formControlName="dataDesaparecimento"
+                            class="w-full border border-[#A9A9A9] h-[30px] rounded-md text-center text-[11px] uppercase">
+                    </div>
+                    <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-7">
+                        <label class="block text-gray-700 uppercase text-[9px]">Local
+                            Desaparecimento:</label>
+                        <input type="text" formControlName="localDesaparecimento"
+                            class="w-full border border-[#A9A9A9] h-[30px] rounded-md text-[11px] uppercase p-1">
+                    </div>
+                    <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12">
+                        <label class="block text-gray-700 uppercase text-[9px]">Vestimentas do
+                            Desaparecido:</label>
+                        <input type="text" formControlName="vestimenta"
+                            class="w-full border border-[#A9A9A9] h-[30px] rounded-md text-[9px] uppercase p-1">
+                    </div>
+                    <div class="col-span-11 sm:col-span-11 md:col-span-11 lg:col-span-11">
+                        <label class="block text-gray-700 uppercase text-[9px]">Informações
+                            Adicionais:</label>
+                        <textarea pInputTextarea rows="5" cols="30" type="text" formControlName="informacao"
+                            class="w-full border border-[#A9A9A9] rounded-md text-[9px] uppercase p-1"></textarea>
+                    </div>
+                    <div class="col-span-1 sm:col-span-1 flex justify-center items-center md:col-span-1 lg:col-span-1">
+                        <i class="material-icons inative cursor-pointer" pTooltip="Cartaz de desaparecido"
+                            (click)="abrirCartaz(urlCartaz)">file_open</i>
+                    </div>
+                    <div class="lg:col-span-3" *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">
+                        <label class="block text-gray-700 uppercase text-[9px]">Data
+                            Localização:</label>
+                        <input type="date" formControlName="dataLocalizacao"
+                            class="w-full border border-[#A9A9A9] h-[30px] rounded-md text-center text-[11px] uppercase">
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+        <div class="container-ultimos-registros mt-3">
+            <p-tabView>
+                <p-tabPanel header="Adicionar Informações">
+                    <div class="grid grid-cols-12 gap-2">
+                        <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12">
+                            <label class="block text-gray-700 uppercase text-[9px]">Novas informações
+                                Adicionais:</label>
+                            <textarea pInputTextarea rows="5" cols="30" type="text" formControlName="novaInformacao"
+                                class="w-full border border-[#A9A9A9] rounded-md text-[9px] uppercase p-1"></textarea>
+                        </div>
+                        <div class="col-span-5 sm:col-span-4 md:col-span-3 lg:col-span-3">
+                            <label class="block text-gray-700 uppercase text-[9px]">Data
+                                de avistamento:</label>
+                            <input type="date" formControlName="dataAvistamento" (blur)="verificaData($event)"
+                                class="w-full border border-[#A9A9A9] h-[30px] rounded-md text-center text-[11px] uppercase">
+                        </div>
+                        <div class="col-span-7 sm:col-span-4 md:col-span-9 lg:col-span-4">
+                            <label class="block text-gray-700 uppercase text-[9px]">Descrição
+                                Anexo:</label>
+                            <input type="text" formControlName="descricao"
+                                class="w-full pl-2 border border-[#A9A9A9] h-[30px] rounded-md text-[11px] uppercase">
+                        </div>
+                        <div class="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-4">
+                            <label class="block text-gray-700 uppercase text-[9px]">Anexos:</label>
+                            <input type="file" class="text-center text-[11px] uppercase">
+                        </div>
+                        <div class="flex justify-end items-end col-span-12">
+                            <div class="flex botao-voltar justify-center items-center cursor-pointer bg-[#424e5c] p-1 w-[90px] h-[30px] rounded"
+                                (click)="adicionaNovaInformacao()">
+                                <span class="text-center text-white text-[12px]">Salvar</span>
+                            </div>
+                        </div>
+                    </div>
+                </p-tabPanel>
+                <p-tabPanel header="Informações Registradas" *ngIf="ultimasInformacoes.length > 0">
+                    <p-table [value]="ultimasInformacoes" class="w-full" [paginator]="true" [rows]="8"
+                        [totalRecords]="ultimasInformacoes.length">
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center uppercase" style="width: 8%;">Cód.</th>
+                                <th class="text-center uppercase" style="width: 10%;">Data</th>
+                                <th class="text-center uppercase col-informacao" style="width: 72%;">
+                                    Informação</th>
+                                <th class="text-center uppercase" style="width: 10%;">Anexos</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-info>
+                            <tr>
+                                <td class="text-center text-[10px]">{{ info.id }}</td>
+                                <td class="text-center text-[10px]">{{ converterData(info.data)}}</td>
+                                <td class="text-[10px] uppercase" style="padding-left: 0.5em;">{{
+                                    info.informacao }}</td>
+                                <td>
+                                    <div class="flex w-full justify-center items-center">
+                                        <i class="material-icons text-[24px] inative cursor-pointer"
+                                            pTooltip="Baixar anexos"
+                                            (click)="downloadAnexos(info.anexos, info.id, converterData(info.data))"
+                                            *ngIf="info.anexos.length > 0">download</i>
+                                        <i class="material-icons text-red text-[20px] inative text-center cursor-pointer"
+                                            pTooltip="Não possui anexos" *ngIf="info.anexos.length == 0">folder_off</i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+        <div class="flex justify-start mt-5">
+            <div class="flex botao-voltar justify-center items-center cursor-pointer bg-[#424e5c] w-[90px] h-[30px] rounded"
+                (click)="voltar()">
+                <span class="text-center text-white text-[13px]">Voltar</span>
+            </div>
+        </div>
+    </form>
 </div>

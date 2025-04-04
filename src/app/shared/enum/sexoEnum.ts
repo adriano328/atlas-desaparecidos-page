@@ -1,4 +1,4 @@
 export const SexoEnum = [
-    { nome: 'Masculino', valor: 'MASCULINO' },
-    { nome: 'Feminino', valor: 'FEMININO' }
+    { nome: 'MASCULINO', valor: 'MASCULINO' },
+    { nome: 'FEMININO', valor: 'FEMININO' }
 ]

@@ -4,12 +4,12 @@
 
 .p-dropdown .p-dropdown-label {
     color: #666 !important;
-    font-size: 13px !important;
+    font-size: 11px !important;
     padding-left: 8px !important;
 }
 
 .p-dropdown .p-dropdown-item {
-    font-size: 13px !important;
+    font-size: 10px !important;
     padding: 6px 10px !important;
 }
 
@@ -65,11 +65,11 @@ input[type="number"] {
 }
 
 @media(max-width: 576px) {
-    .p-inputtext {
-        height: 40px;
+    input {
+        height: 35px !important;
     }
 
     .p-dropdown {
-        height: 40px !important;
+        height: 35px !important;
     }
 }

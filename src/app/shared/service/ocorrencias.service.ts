@@ -25,15 +25,13 @@ export class OcorrenciasService {
       .set('informacao', encodeURIComponent(informacao))
       .set('descricao', encodeURIComponent(descricao))
       .set('data', data);
-  
     const formData = new FormData();
-  
     if (files && files.length > 0) {
       files.forEach((file) => {
         formData.append('files', file, file.name);
       });
     }
-  
+
     return this.http.post(`${environment.url}/ocorrencias/informacoes-desaparecido`, formData, { params });
   }
 

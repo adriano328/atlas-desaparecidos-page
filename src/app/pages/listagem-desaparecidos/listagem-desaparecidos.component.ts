@@ -82,5 +82,4 @@ export class ListagemDesaparecidosComponent implements OnInit {
   redireciona(individuo: number) {
     NavegacaoUtils.redireciona(this.router, 'detalhamento-desaparecido', individuo);
   }
-
 }

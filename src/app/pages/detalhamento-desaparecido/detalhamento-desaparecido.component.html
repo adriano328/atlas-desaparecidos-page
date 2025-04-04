@@ -4,14 +4,25 @@
             <span class="uppercase text-[11px] text-white">Informações do Desaparecido</span>
         </div>
         <div class="grid grid-cols-12">
-            <div class="flex flex-col col-span-12 sm:col-span-10 md:col-span-3 lg:col-span-2 justify-center items-center borda-container">
-                <div class="container-foto border border-[#A9A9A9] rounded-md"
-                    *ngIf="pessoa?.urlFoto || pessoa?.urlFoto == null">
-                    <img [src]="pessoa?.urlFoto" class="w-[140px] h-[150px] object-cover rounded-md" alt="Foto"
-                        onerror="this.src='assets/img/personNotPhoto.png'">
+            <div
+                class="flex flex-col col-span-12 sm:col-span-10 md:col-span-3 lg:col-span-2 justify-center items-center borda-container">
+                <div class="container-foto border border-[#A9A9A9] rounded-md" *ngIf="pessoa">
+                    <img [src]="pessoa.urlFoto || 'assets/img/personNotPhoto.png'"
+                        class="w-[140px] h-[140px] object-cover rounded-md" />
+                </div>
+                <div class="flex items-end container-status mt-2">
+                    <div class="status-desaparecido col-span-4 cursor-pointer bg-red-500 p-1 pl-2 pr-3 rounded-md "
+                        *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao == null">
+                        <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>
+                    </div>
+                    <div class="status-localizado col-span-4 bg-green-500 p-1 pl-3 pr-3 rounded-md"
+                        *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">57
+                        <span class="texto text-center text-white text-[10px]">LOCALIZADO</span>
+                    </div>
                 </div>
             </div>
-            <p-panel header="Informações Pessoais" class="col-span-12 sm:col-span-10 md:col-span-9 lg:col-span-10 items-center xs:mt-4 lg:mt-0">
+            <p-panel header="Informações Pessoais"
+                class="col-span-12 sm:col-span-10 md:col-span-9 lg:col-span-10 items-center xs:mt-4 lg:mt-0">
                 <div class="grid grid-cols-12 gap-2">
                     <div class="col-span-12 sm:col-span-10 md:col-span-12 lg:col-span-11">
                         <label class="block text-gray-700 uppercase text-[9px]">Nome Completo:</label>
@@ -32,16 +43,6 @@
                         <label class="block text-gray-700 uppercase text-[9px]">Situação Vital:</label>
                         <p-dropdown [options]="situacaoVital" optionLabel="nome" formControlName="situacaoVital"
                             optionValue="valor" placeholder="Selecione" />
-                    </div>
-                    <div class="flex items-end container-status">
-                        <div class="status-desaparecido col-span-4 bg-red-500 p-1 pl-2 pr-3 rounded-md"
-                            *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao == null">
-                            <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>
-                        </div>
-                        <div class="status-localizado col-span-4 bg-green-500 p-1 pl-3 pr-3 rounded-md"
-                            *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">57
-                            <span class="texto text-center text-white text-[10px]">LOCALIZADO</span>
-                        </div>
                     </div>
                 </div>
             </p-panel>
@@ -80,8 +81,13 @@
                             class="w-full border border-[#A9A9A9] rounded-md text-[9px] uppercase p-1"></textarea>
                     </div>
                     <div class="col-span-1 sm:col-span-1 flex justify-center items-center md:col-span-1 lg:col-span-1">
-                        <i class="material-icons inative cursor-pointer" pTooltip="Cartaz de desaparecido"
-                            (click)="abrirCartaz(urlCartaz)">file_open</i>
+                        <i class="material-icons inative cursor-pointer" pTooltip="Visualizar cartaz"
+                            (click)="abrirExterno(urlCartaz)" *ngIf="urlCartaz != undefined">receipt_long</i>
+                        <div class="flex flex-col cursor-pointer justify-center items-center"
+                            (click)="retornaMensagem('Nenhum cartaz disponível no momento!')" *ngIf="urlCartaz == undefined">
+                            <i class="material-icons inative cursor-pointer">warning</i>
+                            <span class="text-[8px] mt-1 uppercase text-center">Não possui cartaz</span>
+                        </div>
                     </div>
                     <div class="lg:col-span-3" *ngIf="pessoa?.ultimaOcorrencia?.dataLocalizacao">
                         <label class="block text-gray-700 uppercase text-[9px]">Data
@@ -127,7 +133,7 @@
                     </div>
                 </p-tabPanel>
                 <p-tabPanel header="Informações Registradas" *ngIf="ultimasInformacoes.length > 0">
-                    <p-table [value]="ultimasInformacoes" class="w-full" [paginator]="true" [rows]="8"
+                    <p-table [value]="ultimasInformacoes" class="w-full" [paginator]="true" [rows]="10"
                         [totalRecords]="ultimasInformacoes.length">
                         <ng-template pTemplate="header">
                             <tr>
@@ -151,7 +157,8 @@
                                             (click)="downloadAnexos(info.anexos, info.id, converterData(info.data))"
                                             *ngIf="info.anexos.length > 0">download</i>
                                         <i class="material-icons text-red text-[20px] inative text-center cursor-pointer"
-                                            pTooltip="Não possui anexos" *ngIf="info.anexos.length == 0">folder_off</i>
+                                            pTooltip="Não há anexos" *ngIf="info.anexos.length == 0"
+                                            (click)="retornaMensagem('Este registro não possui arquivos disponíveis para download')">folder_off</i>
                                     </div>
                                 </td>
                             </tr>

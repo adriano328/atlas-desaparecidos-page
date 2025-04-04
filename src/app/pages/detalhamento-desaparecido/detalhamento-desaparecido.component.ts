@@ -80,6 +80,8 @@ export class DetalhamentoDesaparecidoComponent {
         dado.ultimaOcorrencia.listaCartaz.forEach(item => {
           this.urlCartaz = item.urlCartaz;
         })
+        console.log(this.urlCartaz);
+        
         this.pessoa = dado;
         this.form.patchValue({
           nome: dado.nome,
@@ -149,17 +151,21 @@ export class DetalhamentoDesaparecidoComponent {
         this.ultimasInformacoes = dado;
       },
       error: (err) => {
-        console.error('Erro ao buscar informações:', err);
+        this.messageService.error(err?.error?.detail)
       }
     });
+  }
+
+  retornaMensagem(mensagem: string) {
+    this.messageService.warn(mensagem);
   }
 
   downloadAnexos(anexos: any, id: number, data: string) {
     this.zipService.baixarECompactarArquivos(anexos, this.pessoa.ultimaOcorrencia.ocoId + '_' + id + '_' + this.pessoa.nome + '_' + data + '.zip')
   }
 
-  abrirCartaz(cartaz: string) {
-    window.open(cartaz, '_blank');
+  abrirExterno(rota: string) {
+    NavegacaoUtils.abrirCartaz(rota)
   }
 
   voltar() {

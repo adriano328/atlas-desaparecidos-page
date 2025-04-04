@@ -25,9 +25,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit(): void {
-    this.loadingService.isLoading$.subscribe((isLoading) => {
-      console.log(isLoading);
-      
+    this.loadingService.isLoading$.subscribe((isLoading) => {      
       this.isLoading = isLoading;
       this.cdr.detectChanges();
     });

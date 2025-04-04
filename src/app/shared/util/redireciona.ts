@@ -8,4 +8,8 @@ export class NavegacaoUtils {
             router.navigate([rota]);
         }
     }
+
+    static abrirCartaz(link: string) {
+        window.open(link, '_blank');
+    }
 }

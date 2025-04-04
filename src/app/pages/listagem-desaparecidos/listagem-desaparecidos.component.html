@@ -2,9 +2,9 @@
     <div class="flex flex-col items-center w-full flex-col contaiener-estrutura">
         <form [formGroup]="form" class="flex justify-center mt-5 w-[80%]">
             <div class="grid grid-cols-12 flex justify-center w-[100%] gap-2 mb-3">
-                <div class="col-span-12 sm:col-span-10 md:col-span-6 lg:col-span-8">
+                <div class="col-span-12 sm:col-span-10 md:col-span-6 lg:col-span-5">
                     <label for="nome" class="text-[10px] uppercase">Buscar por nome:</label>
-                    <input id="nome" type="text" class="w-full h-[30px] pl-8 text-[14px]" formControlName="nome"
+                    <input id="nome" type="text" class="w-full h-[30px] pl-2 text-[14px]" formControlName="nome"
                         pInputText />
                 </div>
                 <div class="col-span-6 sm:col-span-10 md:col-span-3 lg:col-span-2">
@@ -36,13 +36,13 @@
             </div>
         </form>
         <div class="flex flex-row flex-wrap justify-center items-center gap-2 cards w-[1100px]" *ngIf="pessoas.length > 0">
-            <div class="card mt-3 bg-[#ffff] cursor-pointer border border-[#cecece] rounded-lg w-[180px] h-[230px] p-3 transition-[width,transform] duration-300 ease-in-out hover:scale-110"
+            <div class="card mt-3 bg-[#ffff] cursor-pointer border border-[#cecece] rounded-lg w-[195px] h-[230px] p-3 transition-[width,transform] duration-300 ease-in-out hover:scale-110"
                 *ngFor="let pessoa of pessoas" (click)="redireciona(pessoa.id)">
                 <div class="flex flex-column justify-center container-foto h-[80px]">
-                    <img [src]="pessoa.urlFoto" class="foto rounded-lg w-[80px] h-[80px] border border-[#cecece]" alt="Foto"
+                    <img [src]="pessoa.urlFoto" class="foto rounded-lg w-[80px] h-[90px] border border-[#cecece]" alt="Foto"
                         onerror="this.src='assets/img/personNotPhoto.png'">
                 </div>
-                <div class="flex flex-col justify-center container-informacoes-pessoais mt-3">
+                <div class="flex flex-col justify-center container-informacoes-pessoais mt-5">
                     <span class="texto text-center text-[9px] uppercase">{{pessoa.nome}}</span>
                     <span class="texto text-center text-[9px] uppercase">{{pessoa.idade}} anos,</span>
                     <div class="flex flex-col">
@@ -50,7 +50,7 @@
                         <span class="texto text-center text-[9px] uppercase">
                             {{pessoa.ultimaOcorrencia.localDesaparecimentoConcat}}</span>
                     </div>
-                    <div class="flex justify-center items-center container-status mt-3">
+                    <div class="flex justify-center items-center container-status mt-2">
                         <div class="status-desaparecido bg-red-500 p-1 pl-2 pr-3 rounded"
                             *ngIf="pessoa.ultimaOcorrencia.dataLocalizacao == null">
                             <span class="texto text-center text-white text-[10px]">DESAPARECIDO</span>

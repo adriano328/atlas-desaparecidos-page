@@ -1,4 +1,3 @@
-
 FROM node:20 AS builder
 
 WORKDIR /app
@@ -11,7 +10,7 @@ RUN npm run build -- --configuration production
 # Etapa 2: Servir com Nginx
 FROM nginx:alpine
 
-COPY --from=builder /app/dist/consulta-desaparecidos /usr/share/nginx/html
+COPY --from=builder /app/dist/consulta-desaparecidos/browser /usr/share/nginx/html
 
 # Remove configuração default e adiciona a nossa
 RUN rm /etc/nginx/conf.d/default.conf

@@ -23,11 +23,6 @@ bootstrapApplication(AppComponent, {
       useClass: LoadingInterceptor,
       multi: true
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptor,
-    //   multi: true
-    // }
   ]
 })
   .catch((err) => console.error(err));

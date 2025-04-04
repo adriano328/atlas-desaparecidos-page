@@ -17,7 +17,7 @@ export interface Paginado<T> {
     first: boolean;
     last: boolean;
     size: number;
-    content: T[]; // <- Aqui o conteúdo é dinâmico
+    content: T[];
     number: number;
     sort: {
       unsorted: boolean;

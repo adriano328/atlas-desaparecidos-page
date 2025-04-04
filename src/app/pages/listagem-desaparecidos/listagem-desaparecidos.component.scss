@@ -1,156 +1,40 @@
 ::ng-deep .container-listagem-desaparecidos {
-    height: 100%;
-    overflow-y: auto;
 
-    .contaiener-estrutura {
-        .paginator {
-            margin-top: 10em;
-    
-            .p-paginator {
-                font-size: 12px;
-            }
+    .paginator {
+
+        .p-paginator {
+            font-size: 12px;
         }
-
-        // .container-filtros {
-
-        //     .filtro {
-        //         width: 55%;
-
-        //         .container-botao-limpar {
-        //             .botao-limpar {
-        //                 background-color: #CD5C5C;
-        //                 width: 6em;
-        //                 border-radius: 6px;
-        //                 height: 2em;
-
-        //                 .texto {
-        //                     color: white;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
 
-// @media(max-width: 1200px) {
-//     ::ng-deep .container-listagem-desaparecidos {
-//         .contaiener-estrutura {
-//             margin-bottom: 2em !important;
-
-//             .container-filtros {
-//                 .filtro {
-//                     width: 90% !important;
-//                     display: flex !important;
-//                     flex-direction: column !important;
-//                     padding: 10px;
-//                 }
-//             }
-
-//             .container-cards {
-//                 .cards {
-//                     width: 90%;
-
-//                     .p-card {
-//                         width: 200px !important;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-// @media(max-width: 992px) {
-//     ::ng-deep .container-listagem-desaparecidos {
-//         .contaiener-estrutura {
-//             .container-filtros {
-//                 .filtro {
-//                     display: flex !important;
-//                     flex-direction: column !important;
-//                     width: 90%;
-//                     padding: 10px;
-
-//                     .campo-sexo-idade {
-//                         width: 100% !important;
-//                         display: flex !important;
-//                         justify-content: center;
-//                     }
-//                 }
-//             }
-
-//             .container-cards {
-//                 .cards {
-//                     .p-card {
-//                         width: 170px !important;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+@media(max-width: 992px) {
+    ::ng-deep .container-listagem-desaparecidos {
+        .contaiener-estrutura {
+            .cards {
+                width: 900px !important;
+            }
+        }
+    }
+}
 
 
-// @media(max-width: 768px) {
-//     ::ng-deep .container-listagem-desaparecidos {
-//         .contaiener-estrutura {
-//             .container-filtros {
-//                 .filtro {
+@media(max-width: 768px) {
+    ::ng-deep .container-listagem-desaparecidos {
+        .contaiener-estrutura {
+            .cards {
+                width: 800px !important;
+            }
+        }
+    }
+}
 
-
-//                     .campo {
-//                         margin-bottom: 1em;
-//                     }
-//                 }
-//             }
-
-//             .container-cards {
-//                 .cards {
-//                     display: flex !important;
-//                     justify-content: center !important;
-
-//                     .p-card {
-//                         width: 220px !important;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-// @media(max-width: 576px) {
-//     ::ng-deep .container-listagem-desaparecidos {
-//         .contaiener-estrutura {
-//             .container-filtros {
-//                 .filtro {
-//                     .campo {
-//                         margin-bottom: 1em;
-//                     }
-
-//                     .campo-sexo-idade {
-//                         display: flex !important;
-//                         flex-direction: column !important;
-
-//                         .texto {
-//                             margin-top: 0.8em !important;
-//                         }
-
-//                         .campo-sexo {
-//                             margin-bottom: 1em !important;
-//                         }
-//                     }
-//                 }
-//             }
-
-//             .container-cards {
-//                 .cards {
-//                     display: flex !important;
-//                     justify-content: center !important;
-
-//                     .p-card {
-//                         width: 280px !important;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+@media(max-width: 576px) {
+    ::ng-deep .container-listagem-desaparecidos {
+        .contaiener-estrutura {
+            .cards {
+                width: 600px !important;
+            }
+        }
+    }
+}

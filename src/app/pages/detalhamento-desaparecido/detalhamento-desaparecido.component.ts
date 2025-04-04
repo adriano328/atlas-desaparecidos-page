@@ -4,7 +4,7 @@ import { PessoasService } from '../../shared/service/pessoas.service';
 import { Pessoa } from '../../shared/interface/pessoa.interface';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from '../../shared/service/message.service';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SexoEnum } from '../../shared/enum/sexoEnum';
 import { DropdownModule } from 'primeng/dropdown';
@@ -28,7 +28,7 @@ import { DataMaiorQueHoje } from '../../shared/util/validaData';
   selector: 'app-detalhamento-desaparecido',
   standalone: true,
   imports: [HttpClientModule, NgIf, ReactiveFormsModule, DropdownModule, PanelModule,
-    InputTextareaModule, TooltipModule, AccordionModule, TableModule, PaginatorModule, TabViewModule],
+    InputTextareaModule, TooltipModule, AccordionModule, TableModule, PaginatorModule, TabViewModule, CommonModule, NgFor],
   providers: [PessoasService, OcorrenciasService],
   templateUrl: './detalhamento-desaparecido.component.html',
   styleUrl: './detalhamento-desaparecido.component.scss'
@@ -42,6 +42,8 @@ export class DetalhamentoDesaparecidoComponent {
   status = StatusEnum;
   urlCartaz!: string;
   ultimasInformacoes: NovaInformacao[] = [];
+  arquivosSelecionados: { file: File, descricao: string }[] = [];
+  arquivos: File[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -69,7 +71,8 @@ export class DetalhamentoDesaparecidoComponent {
       dataLocalizacao: [''],
       dataAvistamento: [''],
       descricao: [''],
-      novaInformacao: ['']
+      novaInformacao: [''],
+      arquivo: ['']
     })
   }
 
@@ -80,8 +83,6 @@ export class DetalhamentoDesaparecidoComponent {
         dado.ultimaOcorrencia.listaCartaz.forEach(item => {
           this.urlCartaz = item.urlCartaz;
         })
-        console.log(this.urlCartaz);
-        
         this.pessoa = dado;
         this.form.patchValue({
           nome: dado.nome,
@@ -107,24 +108,60 @@ export class DetalhamentoDesaparecidoComponent {
   }
 
   adicionaNovaInformacao() {
-    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-    const file = fileInput.files?.[0]; 
+    if (!this.arquivos || this.arquivos.length === 0) {
+      this.messageService.warn('Selecione ao menos um arquivo.');
+      return;
+    }
+  
+    const filesArray: File[] = Array.from(this.arquivos);
+  
     this.ocorrenciaService.novasInformacoes(
-      this.pessoa.ultimaOcorrencia.ocoId,
+      this.pessoa.ultimaOcorrencia.ocoId.toString(),
       this.form.value.novaInformacao,
-      this.form.value.descricao,
+      '',
       this.form.value.dataAvistamento,
-      file
+      filesArray
     ).subscribe({
-      next: (res) => {
+      next: () => {
         this.messageService.success('Informação adicionada com sucesso!');
         this.limpaFormularioInformacao();
-        this.buscaInformacoesDesaparecido(this.pessoa.ultimaOcorrencia.ocoId)
+        this.arquivosSelecionados = [];
+        this.arquivos = []; 
+        this.buscaInformacoesDesaparecido(this.pessoa.ultimaOcorrencia.ocoId);
       },
       error: (err) => {
-        this.messageService.error(err?.error?.detail)
+        this.messageService.error(err?.error?.detail);
       }
     });
+  }
+
+  recebeArquivos(event: Event): void {
+    if (!this.form.value.descricao) {
+      this.retornaMensagem('É obrigatório informar a descrição do anexo!');
+      this.form.controls['arquivo'].setValue('');
+      return;
+    }
+  
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const files = Array.from(input.files);
+      const descricao = this.form.value.descricao;
+  
+      this.arquivos.push(...files);
+  
+      files.forEach(file => {
+        this.arquivosSelecionados.push({ file, descricao });
+      });
+  
+      this.form.controls['arquivo'].setValue('');
+      this.form.controls['descricao'].setValue('');
+    }
+  }
+
+  removerArquivoPorDescricao(descricao: string) {
+    this.arquivosSelecionados = this.arquivosSelecionados.filter(
+      item => item.descricao !== descricao
+    );
   }
 
   limpaFormularioInformacao() {
@@ -136,11 +173,11 @@ export class DetalhamentoDesaparecidoComponent {
   }
 
   verificaData($event: any) {
-    if(DataMaiorQueHoje($event.target.value)) {
+    if (DataMaiorQueHoje($event.target.value)) {
       this.messageService.warn('Data não pode ser maior que a data atual!');
       this.form.controls['dataAvistamento'].setValue('')
     }
-  } 
+  }
 
   buscaInformacoesDesaparecido(ocorrenciaId: number) {
     this.ocorrenciaService.buscaInformacoesDesaparecidos(ocorrenciaId).subscribe({
@@ -160,7 +197,7 @@ export class DetalhamentoDesaparecidoComponent {
     this.messageService.warn(mensagem);
   }
 
-  downloadAnexos(anexos: any, id: number, data: string) {
+  downloadAnexos(anexos: any, id: number, data: string) {    
     this.zipService.baixarECompactarArquivos(anexos, this.pessoa.ultimaOcorrencia.ocoId + '_' + id + '_' + this.pessoa.nome + '_' + data + '.zip')
   }
 

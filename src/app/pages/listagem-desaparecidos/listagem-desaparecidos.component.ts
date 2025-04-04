@@ -16,8 +16,6 @@ import { Router } from '@angular/router';
 import { NavegacaoUtils } from '../../shared/util/redireciona';
 import { MessageService } from '../../shared/service/message.service';
 import { DropdownModule } from 'primeng/dropdown';
-
-
 @Component({
   selector: 'app-listagem-desaparecidos',
   standalone: true,
@@ -65,7 +63,7 @@ export class ListagemDesaparecidosComponent implements OnInit {
         this.pessoas = res.content;
         this.totalElements = res.totalElements;
       },
-      error: (e) => {        
+      error: (e) => {
         this.messageService.error(e?.error?.detail)
       }
     })

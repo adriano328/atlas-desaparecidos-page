@@ -13,16 +13,27 @@ export class OcorrenciasService {
     private http: HttpClient
   ) { }
 
-  novasInformacoes(ocoId: number, informacao: string, descricao: string, data: string, file?: File) {
+  novasInformacoes(
+    ocoId: string,
+    informacao: string,
+    descricao: string,
+    data: string,
+    files?: File[]
+  ) {
     const params = new HttpParams()
       .set('ocoId', ocoId)
       .set('informacao', encodeURIComponent(informacao))
       .set('descricao', encodeURIComponent(descricao))
       .set('data', data);
+  
     const formData = new FormData();
-    if (file) {
-      formData.append('files', file, file.name);
+  
+    if (files && files.length > 0) {
+      files.forEach((file) => {
+        formData.append('files', file, file.name);
+      });
     }
+  
     return this.http.post(`${environment.url}/ocorrencias/informacoes-desaparecido`, formData, { params });
   }
 

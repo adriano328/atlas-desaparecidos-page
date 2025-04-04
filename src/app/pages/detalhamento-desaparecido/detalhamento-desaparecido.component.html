@@ -56,7 +56,7 @@
                             class="w-full border border-[#A9A9A9] h-[30px] rounded-md text-center text-[11px] uppercase"
                             readonly>
                     </div>
-                    <div class="col-span-5 sm:col-span-4 md:col-span-4 lg:col-span-3">
+                    <div class="col-span-5 sm:col-span-4 md:col-span-3 lg:col-span-2">
                         <label class="block text-gray-700 uppercase text-[9px]">Data
                             Desaparecimento:</label>
                         <input type="date" formControlName="dataDesaparecimento"
@@ -84,7 +84,8 @@
                         <i class="material-icons inative cursor-pointer" pTooltip="Visualizar cartaz"
                             (click)="abrirExterno(urlCartaz)" *ngIf="urlCartaz != undefined">receipt_long</i>
                         <div class="flex flex-col cursor-pointer justify-center items-center"
-                            (click)="retornaMensagem('Nenhum cartaz disponível no momento!')" *ngIf="urlCartaz == undefined">
+                            (click)="retornaMensagem('Nenhum cartaz disponível no momento!')"
+                            *ngIf="urlCartaz == undefined">
                             <i class="material-icons inative cursor-pointer">warning</i>
                             <span class="text-[8px] mt-1 uppercase text-center">Não possui cartaz</span>
                         </div>
@@ -108,7 +109,7 @@
                             <textarea pInputTextarea rows="5" cols="30" type="text" formControlName="novaInformacao"
                                 class="w-full border border-[#A9A9A9] rounded-md text-[9px] uppercase p-1"></textarea>
                         </div>
-                        <div class="col-span-5 sm:col-span-4 md:col-span-3 lg:col-span-3">
+                        <div class="col-span-5 sm:col-span-2 md:col-span-3 lg:col-span-2">
                             <label class="block text-gray-700 uppercase text-[9px]">Data
                                 de avistamento:</label>
                             <input type="date" formControlName="dataAvistamento" (blur)="verificaData($event)"
@@ -121,8 +122,35 @@
                                 class="w-full pl-2 border border-[#A9A9A9] h-[30px] rounded-md text-[11px] uppercase">
                         </div>
                         <div class="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-4">
-                            <label class="block text-gray-700 uppercase text-[9px]">Anexos:</label>
-                            <input type="file" class="text-center text-[11px] uppercase">
+                            <label class="block text-gray-700 uppercase text-[9px]">Anexo:</label>
+                            <input type="file" multiple formControlName="arquivo" (change)="recebeArquivos($event)"
+                                class="text-center text-[11px] uppercase" />
+                        </div>
+                        <div class="col-span-12 flex justify-center" *ngIf="arquivosSelecionados.length > 0">
+                            <div class="w-[300px] flex justify-center mt-3">
+                                <p-table [value]="arquivosSelecionados" class="w-full">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="text-center uppercase" style="width: 8%;">#</th>
+                                            <th class="text-center uppercase" style="width: 82%;">Descrição</th>
+                                            <th class="text-center uppercase" style="width: 10%;">Ação</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-arquivo let-i="rowIndex">
+                                        <tr>
+                                            <td class="text-center text-[10px] uppercase">{{ i + 1 }}</td>
+                                            <td class="text-center text-[10px] uppercase">{{ arquivo.descricao}}</td>
+                                            <td>
+                                                <div class="flex w-full justify-center items-center">
+                                                    <i class="material-icons text-[18px] inative cursor-pointer"
+                                                        (click)="removerArquivoPorDescricao(arquivo.descricao)"
+                                                        pTooltip="Remove anexo">delete</i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
                         </div>
                         <div class="flex justify-end items-end col-span-12">
                             <div class="flex botao-voltar justify-center items-center cursor-pointer bg-[#424e5c] p-1 w-[90px] h-[30px] rounded"

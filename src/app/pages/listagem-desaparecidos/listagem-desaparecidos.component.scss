@@ -1,177 +1,156 @@
 ::ng-deep .container-listagem-desaparecidos {
     height: 100%;
     overflow-y: auto;
-    background-color: #dddbdb;
 
     .contaiener-estrutura {
-        margin-bottom: 1em;
-
-        .container-filtros {
-
-            .filtro {
-                width: 55%;
-
-                .container-botao-limpar {
-                    .botao-limpar {
-                        background-color: #CD5C5C;
-                        width: 6em;
-                        border-radius: 6px;
-                        height: 2em;
-
-                        .texto {
-                            color: white;
-                        }
-                    }
-                }
-            }
-        }
-
-        .container-cards {
-            margin-top: 2em;
-
-            .cards {
-                width: 70%;
-
-                .p-card {
-                    width: 230px;
-                    height: 320px;
-                    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
-                }
-
-                .p-card:hover {
-                    transform: scale(1.05);
-                }
-            }
-        }
-
         .paginator {
-            margin-top: 1em;
-
+            margin-top: 10em;
+    
             .p-paginator {
                 font-size: 12px;
             }
         }
+
+        // .container-filtros {
+
+        //     .filtro {
+        //         width: 55%;
+
+        //         .container-botao-limpar {
+        //             .botao-limpar {
+        //                 background-color: #CD5C5C;
+        //                 width: 6em;
+        //                 border-radius: 6px;
+        //                 height: 2em;
+
+        //                 .texto {
+        //                     color: white;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
 
-@media(max-width: 1200px) {
-    ::ng-deep .container-listagem-desaparecidos {
-        .contaiener-estrutura {
-            margin-bottom: 2em !important;
+// @media(max-width: 1200px) {
+//     ::ng-deep .container-listagem-desaparecidos {
+//         .contaiener-estrutura {
+//             margin-bottom: 2em !important;
 
-            .container-filtros {
-                .filtro {
-                    width: 90% !important;
-                    display: flex !important;
-                    flex-direction: column !important;
-                    padding: 10px;
-                }
-            }
+//             .container-filtros {
+//                 .filtro {
+//                     width: 90% !important;
+//                     display: flex !important;
+//                     flex-direction: column !important;
+//                     padding: 10px;
+//                 }
+//             }
 
-            .container-cards {
-                .cards {
-                    width: 90%;
+//             .container-cards {
+//                 .cards {
+//                     width: 90%;
 
-                    .p-card {
-                        width: 200px !important;
-                    }
-                }
-            }
-        }
-    }
-}
+//                     .p-card {
+//                         width: 200px !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-@media(max-width: 992px) {
-    ::ng-deep .container-listagem-desaparecidos {
-        .contaiener-estrutura {
-            .container-filtros {
-                .filtro {
-                    display: flex !important;
-                    flex-direction: column !important;
-                    width: 90%;
-                    padding: 10px;
+// @media(max-width: 992px) {
+//     ::ng-deep .container-listagem-desaparecidos {
+//         .contaiener-estrutura {
+//             .container-filtros {
+//                 .filtro {
+//                     display: flex !important;
+//                     flex-direction: column !important;
+//                     width: 90%;
+//                     padding: 10px;
 
-                    .campo-sexo-idade {
-                        width: 100% !important;
-                        display: flex !important;
-                        justify-content: center;
-                    }
-                }
-            }
+//                     .campo-sexo-idade {
+//                         width: 100% !important;
+//                         display: flex !important;
+//                         justify-content: center;
+//                     }
+//                 }
+//             }
 
-            .container-cards {
-                .cards {
-                    .p-card {
-                        width: 170px !important;
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-@media(max-width: 768px) {
-    ::ng-deep .container-listagem-desaparecidos {
-        .contaiener-estrutura {
-            .container-filtros {
-                .filtro {
+//             .container-cards {
+//                 .cards {
+//                     .p-card {
+//                         width: 170px !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
-                    .campo {
-                        margin-bottom: 1em;
-                    }
-                }
-            }
+// @media(max-width: 768px) {
+//     ::ng-deep .container-listagem-desaparecidos {
+//         .contaiener-estrutura {
+//             .container-filtros {
+//                 .filtro {
 
-            .container-cards {
-                .cards {
-                    display: flex !important;
-                    justify-content: center !important;
 
-                    .p-card {
-                        width: 220px !important;
-                    }
-                }
-            }
-        }
-    }
-}
+//                     .campo {
+//                         margin-bottom: 1em;
+//                     }
+//                 }
+//             }
 
-@media(max-width: 576px) {
-    ::ng-deep .container-listagem-desaparecidos {
-        .contaiener-estrutura {
-            .container-filtros {
-                .filtro {
-                    .campo {
-                        margin-bottom: 1em;
-                    }
+//             .container-cards {
+//                 .cards {
+//                     display: flex !important;
+//                     justify-content: center !important;
 
-                    .campo-sexo-idade {
-                        display: flex !important;
-                        flex-direction: column !important;
+//                     .p-card {
+//                         width: 220px !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-                        .texto {
-                            margin-top: 0.8em !important;
-                        }
+// @media(max-width: 576px) {
+//     ::ng-deep .container-listagem-desaparecidos {
+//         .contaiener-estrutura {
+//             .container-filtros {
+//                 .filtro {
+//                     .campo {
+//                         margin-bottom: 1em;
+//                     }
 
-                        .campo-sexo {
-                            margin-bottom: 1em !important;
-                        }
-                    }
-                }
-            }
+//                     .campo-sexo-idade {
+//                         display: flex !important;
+//                         flex-direction: column !important;
 
-            .container-cards {
-                .cards {
-                    display: flex !important;
-                    justify-content: center !important;
+//                         .texto {
+//                             margin-top: 0.8em !important;
+//                         }
 
-                    .p-card {
-                        width: 280px !important;
-                    }
-                }
-            }
-        }
-    }
-}
+//                         .campo-sexo {
+//                             margin-bottom: 1em !important;
+//                         }
+//                     }
+//                 }
+//             }
+
+//             .container-cards {
+//                 .cards {
+//                     display: flex !important;
+//                     justify-content: center !important;
+
+//                     .p-card {
+//                         width: 280px !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

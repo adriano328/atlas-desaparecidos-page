@@ -1,10 +1,10 @@
-#📘 Seplag Teste - Front-End
+# 📘 Seplag Teste - Front-End
 
 Projeto desenvolvido como parte de um processo seletivo simplificado para gerenciar dados de pessoas desaparecidas e localizadas. O projeto consome uma API pública fornecida pela SEPLAG e permite a visualização e inclusão de registros.
 
 ---
 
-🛠 Tecnologias utilizadas
+##  🛠 Tecnologias utilizadas
 - ⚙️ Angular
 - 🎨 PrimeNG
 - 💨 TailwindCSS
@@ -17,90 +17,95 @@ Projeto desenvolvido como parte de um processo seletivo simplificado para gerenc
 
 ---
 
-🔗 API pública:
+## 🔗 API pública:
 
-Este projeto utiliza a base de dados disponibilizada pela SEPLAG:🔗 https://abitus-api.geia.vip/v1.
+Este projeto integra-se à base de dados fornecida pela SEPLAG por meio da API RESTful disponível em 🔗 https://abitus-api.geia.vip/v1. A comunicação com o serviço é realizada através do módulo HttpClient do Angular, responsável pelo gerenciamento das requisições HTTP de forma assíncrona e tipada.
 
 Através dessa API é possível.:
 - Carregar os dados de todos os indivíduos desaparecidos e localizados;
 ![image](https://github.com/user-attachments/assets/56f15b93-4dc1-410c-b1fd-0d72f7b58ac3)
 
-Visualizar detalhes de cada individuo de forma completa.
+- Visualizar detalhes de cada individuo de forma completa.
 ![image](https://github.com/user-attachments/assets/56a5ad91-28e0-4d7f-ace8-03dc68480011)
 
-Incluir novas informações sobre o indivíduo
+- Incluir novas informações sobre o indivíduo.
+![image](https://github.com/user-attachments/assets/043d67c4-61a4-4ac5-bd3f-03f032b588b7)
 
-Visualizar últimos registros
+- Visualizar todosúltimos registros do individuo:
+![image](https://github.com/user-attachments/assets/3fc0e2a4-68a3-4564-9194-f89b64683ffc)
 
-O HttpClient do Angular foi utilizado para administrar a conexão com a API.
+---
 
-🥪 Funcionalidades da aplicação
+## 🚀 Instruções para execução
 
-🔍 Busca de pessoas desaparecidas/localizadas
+1) 🧭 Executar Localmente:
+- Antes de executar o projeto, verifique se você possui os seguintes itens instalados:
 
-👤 Visualização detalhada de cada registro
+✅ IDE recomendada: Visual Studio Code ou WebStorm
 
-➕ Inclusão de novas informações de visualização do desaparecido
+✅ Node.js: https://nodejs.org
 
-🧽 Visualização dos últimos registros
+- 📥 Clonando o projeto:
+  ```bash
+  git clone https://github.com/adriano328/seplag-test-front-end
+  cd seplag-test-front-end
+  
+- ⬇️ Instalando Dependências:
 
-⚡ Interface responsiva e moderna com PrimeNG + TailwindCSS
+  ```bash
+  npm install
 
-📀 Exportação de dados com FileSaver e JSZip
+- 🚀 Iniciando o servidor local:
 
-💻 Instrução para execução localmente
+  ```bash
+  npm start
 
-1. Requisitos
 
-✅ Node.js instalado: https://nodejs.org
+Acesse no navegador: 🌐 http://localhost:4200
 
-✅ Docker instalado: https://www.docker.com
+2) 🐳 Executando com Docker
 
-ℹ️ Docker é necessário somente se for rodar o projeto dentro de um container.
+Verifique se a máquina possui o Docker instalado. Caso não, instale em: https://www.docker.com
 
-2. Clonando o projeto
+Clone este projeto. Após a clonagem, entre na pasta scripts:
 
-git clone https://github.com/adriano328/seplag-test-front-end
-cd seplag-test-front-end
+```bash
+seplag-test-front-end/scripts
+docker-compose up -d
+```
 
-3. Instalando dependências
+---
+## 🥪 Funcionalidades da aplicação
 
-npm install
+- 🔍 Busca de pessoas desaparecidas/localizadas
 
-4. Executando a aplicação
+- 👤 Visualização detalhada de cada registro
 
-ng serve
+- ➕ Inclusão de novas informações de visualização do desaparecido
 
-Acesse no navegador:🌐 http://localhost:4200
+- 🧽 Visualização dos últimos registros
 
-🐳 Executando com Docker
+- ⚡ Interface responsiva e moderna com PrimeNG + TailwindCSS
 
-Verifique se a máquina possui o Docker instalado. Caso não, instale em:https://www.docker.com
+- 📀 Exportação de anexos com FileSaver e JSZip
+---
 
-Dockerfile (exemplo)
+## 📄 Licença
 
-# Etapa de build
-FROM node:20 AS build
+Este projeto é de uso experimental. Todos os dados exibidos são provenientes de uma API pública e utilizados apenas para fins de demonstração.
 
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build --prod
+---
 
-# Etapa de produção
-FROM nginx:alpine
-COPY --from=build /app/dist/seplag-test-front-end /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+## Dados da Inscrição:
 
-Comandos
+- Inscrição: 9252
+- Data da Inscrição: 05/04/2025 16:44:03
+- Nome: LUCAS ADRIANO DIAS RAMOS
+- E-mail: lucasadrianodias@gmail.com
+- CPF: 048.146.171-00
+- RG: 23709863
+- Celular: (65) 99901-1697
 
-docker build -t seplag-frontend .
-docker run -p 80:80 seplag-frontend
 
-Acesse no navegador:🌐 http://localhost
 
-📄 Licença
-
-Este projeto é de uso educacional e experimental. Todos os dados exibidos são provenientes de uma API pública e utilizados apenas para fins de demonstração.
 

@@ -14,9 +14,11 @@ Projeto desenvolvido como parte de um processo seletivo simplificado para gerenc
 - 🎯 SweetAlert2
 - 🔄 RxJS
 - 🐳 Docker & Docker Compose
-___
 
-🔗 API pública utilizada
+---
+
+🔗 API pública:
+
 Este projeto utiliza a base de dados disponibilizada pela SEPLAG:🔗 https://abitus-api.geia.vip/v1
 Com essa API foi possível:
 - Carregar os dados de todos os indivíduos desaparecidos e localizados;

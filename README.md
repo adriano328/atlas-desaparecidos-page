@@ -1,6 +1,6 @@
 📘 Seplag Teste - Front-End
-___
 Projeto desenvolvido como parte de um processo seletivo simplificado para gerenciar dados de pessoas desaparecidas e localizadas. O projeto consome uma API pública fornecida pela SEPLAG e permite a visualização e inclusão de registros.
+___
 
 🛠 Tecnologias utilizadas
 - ⚙️ Angular
@@ -15,12 +15,11 @@ Projeto desenvolvido como parte de um processo seletivo simplificado para gerenc
 ___
 
 🔗 API pública utilizada
-
 Este projeto utiliza a base de dados disponibilizada pela SEPLAG:🔗 https://abitus-api.geia.vip/v1
-
 Com essa API foi possível:
+- Carregar os dados de todos os indivíduos desaparecidos e localizados;
+![image](https://github.com/user-attachments/assets/56f15b93-4dc1-410c-b1fd-0d72f7b58ac3)
 
-Carregar os dados dos indivíduos desaparecidos e localizados
 
 Visualizar detalhes de cada pessoa com mais informações
 

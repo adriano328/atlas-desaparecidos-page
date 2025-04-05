@@ -3,24 +3,16 @@
 Projeto desenvolvido como parte de um processo seletivo simplificado para gerenciar dados de pessoas desaparecidas e localizadas. O projeto consome uma API pública fornecida pela SEPLAG e permite a visualização e inclusão de registros.
 
 🛠 Tecnologias utilizadas
-
-⚙️ Angular
-
-🎨 PrimeNG
-
-💨 TailwindCSS
-
-🛆 npm
-
-📁 FileSaver
-
-🔜 JSZip
-
-🎯 SweetAlert2
-
-🔄 RxJS
-
-🐳 Docker & Docker Compose
+- ⚙️ Angular
+- 🎨 PrimeNG
+- 💨 TailwindCSS
+- 🛆 npm
+- 📁 FileSaver
+- 🔜 JSZip
+- 🎯 SweetAlert2
+- 🔄 RxJS
+- 🐳 Docker & Docker Compose
+___
 
 🔗 API pública utilizada
 

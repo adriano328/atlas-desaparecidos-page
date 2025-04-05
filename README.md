@@ -1,34 +1,30 @@
-📘 Seplag Front-End
-Projeto desenvolvido com Angular para consumo da API pública da Seplag (https://abitus-api.geia.vip/v1), focado na apresentação de informações sobre pessoas desaparecidas e localizadas.
+📘 Seplag Teste - Front-End
+
+Projeto desenvolvido como parte de um processo seletivo simplificado para gerenciar dados de pessoas desaparecidas e localizadas. O projeto consome uma API pública fornecida pela SEPLAG e permite a visualização e inclusão de registros.
 
 🛠 Tecnologias utilizadas
-🌐 Angular
 
-🔧 TypeScript
+⚙️ Angular
 
-🎨 Angular Material
+🎨 PrimeNG
 
-📦 npm / yarn
+💨 TailwindCSS
 
-🧪 RxJS
+🛆 npm
 
-📡 Consumo de API REST
+📁 FileSaver
 
-🐳 Docker (opcional)
+🔜 JSZip
 
-✅ Funcionalidades da aplicação
-👁️ Visualização de pessoas desaparecidas e localizadas
+🎯 SweetAlert2
 
-🔍 Visualização detalhada de informações individuais
+🔄 RxJS
 
-🕒 Visualização dos últimos registros
+🐳 Docker & Docker Compose
 
-➕ Inclusão de novas informações sobre o indivíduo
+🔗 API pública utilizada
 
-📡 API Utilizada
-A aplicação consome a API pública da Seplag:
-
-🔗 https://abitus-api.geia.vip/v1
+Este projeto utiliza a base de dados disponibilizada pela SEPLAG:🔗 https://abitus-api.geia.vip/v1
 
 Com essa API foi possível:
 
@@ -38,79 +34,77 @@ Visualizar detalhes de cada pessoa com mais informações
 
 Incluir novas informações sobre o indivíduo
 
-Visualizar os últimos registros
+Visualizar últimos registros
 
-🚀 Instruções para execução
-✅ Pré-requisitos
-Node.js instalado
+O HttpClient do Angular foi utilizado para administrar a conexão com a API.
 
-Docker instalado (caso queira rodar via container)
+🥪 Funcionalidades da aplicação
 
-▶️ Rodando localmente
-Clone o projeto:
+🔍 Busca de pessoas desaparecidas/localizadas
 
-bash
-Copiar
-Editar
-git clone https://github.com/seu-usuario/seplag-front-end
-cd seplag-front-end
-Instale as dependências:
+👤 Visualização detalhada de cada registro
 
-bash
-Copiar
-Editar
+➕ Inclusão de novas informações de visualização do desaparecido
+
+🧽 Visualização dos últimos registros
+
+⚡ Interface responsiva e moderna com PrimeNG + TailwindCSS
+
+📀 Exportação de dados com FileSaver e JSZip
+
+💻 Instrução para execução localmente
+
+1. Requisitos
+
+✅ Node.js instalado: https://nodejs.org
+
+✅ Docker instalado: https://www.docker.com
+
+ℹ️ Docker é necessário somente se for rodar o projeto dentro de um container.
+
+2. Clonando o projeto
+
+git clone https://github.com/adriano328/seplag-test-front-end
+cd seplag-test-front-end
+
+3. Instalando dependências
+
 npm install
-# ou
-yarn
-Inicie a aplicação:
 
-bash
-Copiar
-Editar
+4. Executando a aplicação
+
 ng serve
-Acesse no navegador:
 
-arduino
-Copiar
-Editar
-http://localhost:4200
-🐳 Rodando com Docker
-Se preferir rodar a aplicação em um container Docker:
+Acesse no navegador:🌐 http://localhost:4200
 
-Certifique-se que o Docker está instalado.
+🐳 Executando com Docker
 
-Execute o seguinte comando:
+Verifique se a máquina possui o Docker instalado. Caso não, instale em:https://www.docker.com
 
-bash
-Copiar
-Editar
-docker compose up --build
-Acesse:
+Dockerfile (exemplo)
 
-arduino
-Copiar
-Editar
-http://localhost:4200
-📁 Estrutura de Pastas
-bash
-Copiar
-Editar
-📁 src/
- ┣ 📁 app/
- ┃ ┣ 📁 components/       # Componentes reutilizáveis
- ┃ ┣ 📁 services/         # Serviços HTTP e regras de negócio
- ┃ ┣ 📁 pages/            # Páginas principais
- ┃ ┗ 📄 app.module.ts     # Módulo principal do Angular
-┣ 📄 main.ts              # Ponto de entrada da aplicação
-┣ 📄 index.html           # Arquivo HTML principal
-┣ 📄 styles.scss          # Estilos globais
-✅ Final
-Com este projeto é possível:
+# Etapa de build
+FROM node:20 AS build
 
-Listar e consultar pessoas desaparecidas
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build --prod
 
-Visualizar detalhes completos de cada pessoa
+# Etapa de produção
+FROM nginx:alpine
+COPY --from=build /app/dist/seplag-test-front-end /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 
-Adicionar novas informações sobre indivíduos
+Comandos
 
-Acompanhar os últimos registros de visualização
+docker build -t seplag-frontend .
+docker run -p 80:80 seplag-frontend
+
+Acesse no navegador:🌐 http://localhost
+
+📄 Licença
+
+Este projeto é de uso educacional e experimental. Todos os dados exibidos são provenientes de uma API pública e utilizados apenas para fins de demonstração.
+

@@ -98,13 +98,25 @@ Este projeto é de uso experimental. Todos os dados exibidos são provenientes d
 
 ## Dados da Inscrição:
 
-- Inscrição: 9252
+- Inscrição: 9362
 - Data da Inscrição: 05/04/2025 16:44:03
 - Nome: LUCAS ADRIANO DIAS RAMOS
 - E-mail: lucasadrianodias@gmail.com
 - CPF: 048.146.171-00
 - RG: 23709863
 - Celular: (65) 99901-1697
+- Perfil: DESENVOLVEDOR FRONT-END - PLENO
+
+  --
+  
+- Inscrição: 9363
+- Data da Inscrição: 05/04/2025 16:44:03
+- Nome: LUCAS ADRIANO DIAS RAMOS
+- E-mail: lucasadrianodias@gmail.com
+- CPF: 048.146.171-00
+- RG: 23709863
+- Celular: (65) 99901-1697
+- Perfil: DESENVOLVEDOR FRONT-END - SÊNIOR
 
 
 

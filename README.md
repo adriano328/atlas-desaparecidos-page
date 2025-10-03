@@ -1,4 +1,4 @@
-# 📘 Seplag Teste - Front-End
+# 📘 R.A.D.A.R - Front-End
 
 Projeto desenvolvido como parte de um processo seletivo simplificado para gerenciar dados de pessoas desaparecidas e localizadas. O projeto consome uma API pública fornecida pela SEPLAG e permite a visualização e inclusão de registros.
 

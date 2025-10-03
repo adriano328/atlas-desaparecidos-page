@@ -90,12 +90,6 @@ docker-compose up -d
 - 📀 Exportação de anexos com FileSaver e JSZip
 ---
 
-## 📄 Licença
-
-Este projeto é de uso experimental. Todos os dados exibidos são provenientes de uma API pública e utilizados apenas para fins de demonstração.
-
----
-
 
 
 
